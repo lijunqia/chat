@@ -31,15 +31,7 @@
 </ul>
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="/asset/layui/layui.js"></script>
-<script>
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?6b614cdee352cbb9f55e05ad81084c3a";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
+
 <script>
     var socket;
     var ping;
@@ -87,7 +79,7 @@
         });
         //监听自定义工具栏点击，以添加代码为例
         //建立websocket连接
-        socket = new WebSocket('ws://chat.woann.cn/ws?sessionid={{ $sessionid }}');
+        socket = new WebSocket('ws://'+window.location.host+'/ws?sessionid={{ $sessionid }}');
         socket.onopen = function(){
             console.log("websocket is connected")
             ping = setInterval(function () {
