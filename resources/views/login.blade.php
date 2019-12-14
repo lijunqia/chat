@@ -18,7 +18,7 @@
         <div id="large-header" class="large-header">
             <canvas id="demo-canvas"></canvas>
             <div class="logo_box">
-                <h3>登录 woann-chat</h3>
+                <h3>登录</h3>
                 <form action="#" name="f" method="post">
                     <input type="password" style="position:absolute;top:-999px"/>
                     <div class="input_outer">

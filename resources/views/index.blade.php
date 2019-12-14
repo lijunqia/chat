@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>woann-chat</title>
+    <title>聊天室</title>
     <link rel="stylesheet" href="/asset/layui/css/layuiv2.css" media="all">
     <style>
         .layui-edge{
