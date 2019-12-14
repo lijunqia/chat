@@ -41,15 +41,7 @@
 <script src="/asset/login/js/rAF.js"></script>
 <script src="/asset/login/js/demo-1.js"></script>
 </body>
-<script>
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?6b614cdee352cbb9f55e05ad81084c3a";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
+
 <script>
     function register() {
         layer.open({
