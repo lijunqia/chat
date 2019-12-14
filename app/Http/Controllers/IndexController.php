@@ -78,12 +78,12 @@ class IndexController extends Controller
                 [
                     'user_id'       =>  10001,
                     'friend_id'     =>  $user_id,
-                    'friend_group'  =>  147
+                    'friend_group_id'  =>  147
                 ],
                 [
                     'user_id'       =>  $user_id,
                     'friend_id'     =>  10001,
-                    'friend_group'  =>  $friend_group_id
+                    'friend_group_id'  =>  $friend_group_id
                 ],
             ];
             DB::table('friend')->insert($friend_data);
