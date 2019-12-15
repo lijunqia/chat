@@ -19,6 +19,7 @@
             <dd><a href="/loginout">退出登录</a></dd>
         </dl>
     </li>
+    <li class="layui-nav-item layui-this"><a href="/">首页</a></li>
 </ul>
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="/asset/layui/layui.js"></script>
