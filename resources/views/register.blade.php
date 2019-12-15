@@ -50,8 +50,8 @@
                 <label class="layui-form-label">验证码</label>
                 <div class="layui-input-block">
                     <input type="text" style="width: 200px;float: left;" name="code" required  lay-verify="required" placeholder="请输入右图计算结果" autocomplete="off" class="layui-input">
-                    <img style="width: 150px;height: 40px;margin-left: 10px" src="/image_code?key={{ $code_hash }}" onclick="this.src='/image_code?key='+(new Date())" alt="">
-                    <input type="hidden" name="key" value="{{ $code_hash }}">
+                    <img style="width: 150px;height: 40px;margin-left: 10px" src="/image_code?key={{ $code_hash }}" id="changeImg" onclick="" alt="">
+                    <input type="hidden" name="key" id="key" value="{{ $code_hash }}">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -67,6 +67,14 @@
 <script src="/asset/layuiv2/layui.js"></script>
 
 <script>
+
+    layui.use('layer', function(){
+        $("#changeImg").on("click",function(){
+            var r=Math.ceil(Math.random()*100000000);
+            $('#key').val(r);
+            $(this).attr('src','/image_code?key='+r);
+        })
+    });
     layui.use('upload', function(){
         var upload = layui.upload;
         //执行实例
