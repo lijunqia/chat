@@ -52,6 +52,7 @@ class IndexController extends Controller
             if ($user) {
                 return $this->json(500,'用户名已存在');
             }
+            !$post['avatar'] && $post['avatar'] = randIcons();
             $data = [
                 'avatar' => $post['avatar'],
                 'nickname' => $post['nickname'],
