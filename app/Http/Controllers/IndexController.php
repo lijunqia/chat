@@ -116,7 +116,7 @@ class IndexController extends Controller
     {
         $file = $request->file('file');
         $type = $request->input('type');
-        $path = $request->input('path') ?? '';
+        $path = $request->input('path');
         $path = 'uploads/'.$path.'/'.date('Ymd').'/';
         if (!$file) {
             return $this->json(500,'请选择上传的文件');

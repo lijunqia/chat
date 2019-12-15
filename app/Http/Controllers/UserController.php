@@ -24,9 +24,9 @@ class UserController extends Controller
             ->leftJoin('group as g','g.id','=','gm.group_id')
             ->select('g.id','g.groupname','g.avatar')
             ->where('gm.user_id', $user->id)->get();
-        foreach ($groups as $k=>$v) {
-            $groups[$k]->groupname = $v->groupname.'('.$v->id.')';
-        }
+//        foreach ($groups as $k=>$v) {
+//            $groups[$k]->groupname = $v->groupname.'('.$v->id.')';
+//        }
         $friend_groups = DB::table('friend_group')->select('id','groupname')->where('user_id', $user->id)->get();
         foreach ($friend_groups as $k => $v) {
             $friend_groups[$k]->list = DB::table('friend as f')
