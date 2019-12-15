@@ -46,7 +46,7 @@ class IndexController extends Controller
             $post = $request->post();
             $code_value = Cache::get('image:'.$post['key']);
             if ($code_value != $post['code']) {
-                return $this->json(500,'验证码错误'.$code_value);
+                return $this->json(500,'验证码错误');
             }
             $user = DB::table('user')->where('username', $post['username'])->first();
             if ($user) {

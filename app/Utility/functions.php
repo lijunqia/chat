@@ -233,5 +233,5 @@ function randIcons()
 		'https://lovepicture.nosdn.127.net/-5265629520073878840?imageView',
 	];
 
-	return array_rand($icons);
+	return $icons[array_rand($icons)];
 }
