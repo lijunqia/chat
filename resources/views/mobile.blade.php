@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>聊天室</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="/asset/layui/css/layui.mobilev2.css" media="all">
 
     <link rel="stylesheet" href="//res.layui.com/layui/dist/css/layui.mobile.css">
     <link id="layuicss-skinlayim-mobilecss" rel="stylesheet" href="//res.layui.com/layui/dist/css/modules/layim/mobile/layim.css?v=2.0" media="all">
@@ -12,7 +11,7 @@
 <body>
 
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="/asset/layui/layui.js"></script>
+<script src="//res.layui.com/layui/dist/layui.js"></script>
 
 <script>
     var socket;
@@ -25,10 +24,13 @@
 
         socket.send(data)
     }
-    layui.use('element', function(){
-        var element = layui.element;
-    });
-    layui.use('layim', function(layim){
+    layui.config({
+        version: '20171011'
+    }).use('mobile', function(){
+        var mobile = layui.mobile
+            ,layim = mobile.layim
+            ,layer = mobile.layer;
+
         //基础配置
         layim.config({
             init: {
@@ -61,11 +63,7 @@
             ,msgbox: '/message_box' //消息盒子页面地址，若不开启，剔除该项即可
             ,find: '/find'//发现页面地址，若不开启，剔除该项即可
             ,chatLog: '/chat_log' //聊天记录页面地址，若不开启，剔除该项即可
-        }).use('mobile', function(){
-            var mobile = layui.mobile
-                ,layim = mobile.layim
-                ,layer = mobile.layer;
-        });
+        })
         //监听自定义工具栏点击，以添加代码为例
         //建立websocket连接
         socket = new WebSocket('ws://'+window.location.host+'/ws?sessionid={{ $sessionid }}');
