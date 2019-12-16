@@ -85,7 +85,7 @@ CREATE TABLE `c_group` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL COMMENT '群组所属用户id,群主',
   `groupname` varchar(255) NOT NULL COMMENT '群名',
-  `avatar` varchar(255) NOT NULL
+  `avatar` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='群组';
 
 --
