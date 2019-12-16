@@ -221,4 +221,10 @@ class IndexController extends Controller
 
     }
 
+    public function mobile(Request $request)
+    {
+        $sessionid = $request->session()->getId();
+        return view('mobile',['sessionid' => $sessionid]);
+    }
+
 }

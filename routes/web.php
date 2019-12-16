@@ -13,6 +13,7 @@
 
 Route::group(['middleware'=>'login'], function () use($router) {
     $router->get('/',['uses' => 'IndexController@index']);
+    $router->get('/mobile',['uses' => 'IndexController@mobile']);
     $router->get('/message_box',['uses' => 'IndexController@messageBox']);
     $router->get('/chat_log',['uses' => 'IndexController@chatLog']);
     $router->get('/userinfo',['uses' => 'UserController@userinfo']);
