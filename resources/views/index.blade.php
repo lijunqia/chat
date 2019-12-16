@@ -2,6 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
     <title>聊天室</title>
     <link rel="stylesheet" href="/asset/layui/css/layuiv2.css" media="all">
     <style>
@@ -11,6 +15,9 @@
     </style>
 </head>
 <body>
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header header header-demo" winter1>
+        <div class="layui-main">
 <ul class="layui-nav" >
 
     <li class="layui-nav-item" style="float: right;">
@@ -21,6 +28,9 @@
     </li>
     <li class="layui-nav-item layui-this"><a href="/">首页</a></li>
 </ul>
+        </div>
+    </div>
+</div>
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="/asset/layui/layui.js"></script>
 
