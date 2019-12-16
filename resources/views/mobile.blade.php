@@ -5,8 +5,7 @@
     <title>聊天室</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <link rel="stylesheet" href="//res.layui.com/layui/dist/css/layui.mobile.css">
-    <link id="layuicss-skinlayim-mobilecss" rel="stylesheet" href="//res.layui.com/layui/dist/css/modules/layim/mobile/layim.css?v=2.0" media="all">
+    <link rel="stylesheet" href="/asset/layuiv2/css/layui.mobile.css" media="all">
 </head>
 <body>
 
