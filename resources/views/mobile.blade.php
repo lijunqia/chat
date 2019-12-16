@@ -32,10 +32,18 @@
 
         //基础配置
         layim.config({
-            init: {
-                url: '/userinfo' //接口地址（返回的数据格式见下文）
-                ,type: 'get' //默认get，一般可不填
-                ,data: {} //额外参数
+            init: {//我的信息
+                mine: {
+                    url: '/userinfo' //接口地址（返回的数据格式见下文）
+                    ,type: 'get' //默认get，一般可不填
+                    ,data: {} //额外参数
+                }
+                //好友列表数据
+                ,friend: {
+                    url: '/group_members' //接口地址（返回的数据格式见下文）
+                    ,type: 'get' //默认get，一般可不填
+                    ,data: {} //额外参数
+                }
             }
             //获取群员接口（返回的数据格式见下文）
             ,members: {
