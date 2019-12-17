@@ -154,6 +154,7 @@
             console.log("websocket is closed")
             clearInterval(ping)
         }
+        //监听发送消息
         layim.on('sendMessage', function(res){
             var mine = res.mine; //包含我发送的消息及我的信息
             var to = res.to; //对方的信息
@@ -163,34 +164,6 @@
             }));
         });
 
-        //监听发送消息
-        layim.on('sendMessage', function(data){
-            var To = data.to;
-            //console.log(data);
-
-            //演示自动回复
-            setTimeout(function(){
-                var obj = {};
-                if(To.type === 'group'){
-                    obj = {
-                        username: '模拟群员'+(Math.random()*100|0)
-                        ,avatar: layui.cache.dir + 'images/face/'+ (Math.random()*72|0) + '.gif'
-                        ,id: To.id
-                        ,type: To.type
-                        ,content: autoReplay[Math.random()*9|0]
-                    }
-                } else {
-                    obj = {
-                        username: To.name
-                        ,avatar: To.avatar
-                        ,id: To.id
-                        ,type: To.type
-                        ,content: autoReplay[Math.random()*9|0]
-                    }
-                }
-                layim.getMessage(obj);
-            }, 1000);
-        });
 
         layim.on('sign', function(value){
             console.log(value); //获得新的签名
@@ -294,17 +267,6 @@
             }
         });
 
-        //模拟收到一条好友消息
-        setTimeout(function(){
-            layim.getMessage({
-                username: "贤心"
-                ,avatar: "//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
-                ,id: "100001"
-                ,type: "friend"
-                ,cid: Math.random()*100000|0 //模拟消息id，会赋值在li的data-cid上，以便完成一些消息的操作（如撤回），可不填
-                ,content: "嗨，欢迎体验LayIM。演示标记："+ new Date().getTime()
-            });
-        }, 2000);
 
         //监听查看更多记录
         layim.on('chatlog', function(data, ul){
