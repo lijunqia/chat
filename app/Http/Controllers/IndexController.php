@@ -104,7 +104,7 @@ class IndexController extends Controller
     {
     	if(isMobile())
 		{
-//			header('/mobile');exit;
+			header('/mobile');exit;
 		}
         $sessionid = $request->session()->getId();
         return view('index',['sessionid' => $sessionid]);
