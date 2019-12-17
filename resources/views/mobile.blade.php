@@ -29,7 +29,10 @@
         var mobile = layui.mobile
             ,layim = mobile.layim
             ,layer = mobile.layer;
-        var ini_data = mobile.getJSON('/userinfo');
+        var ini_data ;
+        $.getJSON('/userinfo',function (res) {
+            ini_data = res;
+        });
         //基础配置
         layim.config({
             init: {//我的信息
