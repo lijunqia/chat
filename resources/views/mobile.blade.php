@@ -29,28 +29,21 @@
         var mobile = layui.mobile
             ,layim = mobile.layim
             ,layer = mobile.layer;
-
+        var data = mobile.getJSON('/userinfo');
         //基础配置
         layim.config({
             init: {//我的信息
-                mine: {
-                    url: '/userinfo' //接口地址（返回的数据格式见下文）
-                    ,type: 'get' //默认get，一般可不填
-                    ,data: {} //额外参数
-                }
+                mine: data.mine
                 //好友列表数据
-                ,friend: {
-                    url: '/group_members' //接口地址（返回的数据格式见下文）
-                    ,type: 'get' //默认get，一般可不填
-                    ,data: {} //额外参数
-                }
+                ,friend: data.friend
+                ,group: data.group
             }
-            //获取群员接口（返回的数据格式见下文）
-            ,members: {
-                url: '/group_members' //接口地址（返回的数据格式见下文）
-                ,type: 'get' //默认get，一般可不填
-                ,data: {} //额外参数
-            }
+            // //获取群员接口（返回的数据格式见下文）
+            // ,members: {
+            //     url: '/group_members' //接口地址（返回的数据格式见下文）
+            //     ,type: 'get' //默认get，一般可不填
+            //     ,data: {} //额外参数
+            // }
             //上传图片接口（返回的数据格式见下文），若不开启图片上传，剔除该项即可
             ,uploadImage: {
                 url: '/upload?type=im_image&path=im' //接口地址
@@ -61,15 +54,32 @@
                 url: '/upload?type=im_file&path=file' //接口地址
                 ,type: 'post' //默认post
             }
-            //扩展工具栏，下文会做进一步介绍（如果无需扩展，剔除该项即可）
-            ,tool: [{
-                alias: 'code' //工具别名
-                ,title: '代码' //工具名称
-                ,icon: '&#xe64e;' //工具图标，参考图标文档
+            // //扩展工具栏，下文会做进一步介绍（如果无需扩展，剔除该项即可）
+            // ,tool: [{
+            //     alias: 'code' //工具别名
+            //     ,title: '代码' //工具名称
+            //     ,icon: '&#xe64e;' //工具图标，参考图标文档
+            // }]
+            // ,msgbox: '/message_box' //消息盒子页面地址，若不开启，剔除该项即可
+            // ,find: '/find'//发现页面地址，若不开启，剔除该项即可
+            // ,chatLog: '/chat_log' //聊天记录页面地址，若不开启，剔除该项即可
+
+            //扩展更多列表
+            ,moreList: [{
+                alias: 'find'
+                ,title: '发现'
+                ,iconUnicode: '&#xe628;' //图标字体的unicode，可不填
+                ,iconClass: '' //图标字体的class类名
+            },{
+                alias: 'share'
+                ,title: '分享与邀请'
+                ,iconUnicode: '&#xe641;' //图标字体的unicode，可不填
+                ,iconClass: '' //图标字体的class类名
             }]
-            ,msgbox: '/message_box' //消息盒子页面地址，若不开启，剔除该项即可
-            ,find: '/find'//发现页面地址，若不开启，剔除该项即可
-            ,chatLog: '/chat_log' //聊天记录页面地址，若不开启，剔除该项即可
+            //,isNewFriend: false //是否开启“新的朋友”
+            ,isgroup: true //是否开启“群聊”
+            //,chatTitleColor: '#c00' //顶部Bar颜色
+            //,title: 'LayIM' //应用名，默认：我的IM
         })
         //监听自定义工具栏点击，以添加代码为例
         //建立websocket连接
@@ -140,6 +150,36 @@
                 ,data: res
             }));
         });
+
+        //监听发送消息
+        layim.on('sendMessage', function(data){
+            var To = data.to;
+            //console.log(data);
+
+            //演示自动回复
+            setTimeout(function(){
+                var obj = {};
+                if(To.type === 'group'){
+                    obj = {
+                        username: '模拟群员'+(Math.random()*100|0)
+                        ,avatar: layui.cache.dir + 'images/face/'+ (Math.random()*72|0) + '.gif'
+                        ,id: To.id
+                        ,type: To.type
+                        ,content: autoReplay[Math.random()*9|0]
+                    }
+                } else {
+                    obj = {
+                        username: To.name
+                        ,avatar: To.avatar
+                        ,id: To.id
+                        ,type: To.type
+                        ,content: autoReplay[Math.random()*9|0]
+                    }
+                }
+                layim.getMessage(obj);
+            }, 1000);
+        });
+
         layim.on('sign', function(value){
             console.log(value); //获得新的签名
             $.ajax({
@@ -181,6 +221,96 @@
                 }
             }
         });
+
+
+
+
+
+
+        //创建一个会话
+        /*
+        layim.chat({
+          id: 111111
+          ,name: '许闲心'
+          ,type: 'kefu' //friend、group等字符，如果是group，则创建的是群聊
+          ,avatar: '//tp1.sinaimg.cn/1571889140/180/40030060651/1'
+        });
+        */
+
+        //监听点击“新的朋友”
+        layim.on('newFriend', function(){
+            layim.panel({
+                title: '新的朋友' //标题
+                ,tpl: '<div style="padding: 10px;">自定义模版，{{d.data.test}}</div>' //模版
+                ,data: { //数据
+                    test: '么么哒'
+                }
+            });
+        });
+
+        //查看聊天信息
+        layim.on('detail', function(data){
+            //console.log(data); //获取当前会话对象
+            layim.panel({
+                title: data.name + ' 聊天信息' //标题
+                ,tpl: '<div style="padding: 10px;">自定义模版，<a href="http://www.layui.com/doc/modules/layim_mobile.html#ondetail" target="_blank">参考文档</a></div>' //模版
+                ,data: { //数据
+                    test: '么么哒'
+                }
+            });
+        });
+
+        //监听点击更多列表
+        layim.on('moreList', function(obj){
+            switch(obj.alias){
+                case 'find':
+                    layer.msg('自定义发现动作');
+
+                    //模拟标记“发现新动态”为已读
+                    layim.showNew('More', false);
+                    layim.showNew('find', false);
+                    break;
+                case 'share':
+                    layim.panel({
+                        title: '邀请好友' //标题
+                        ,tpl: '<div style="padding: 10px;">自定义模版，{{d.data.test}}</div>' //模版
+                        ,data: { //数据
+                            test: '么么哒'
+                        }
+                    });
+                    break;
+            }
+        });
+
+        //模拟收到一条好友消息
+        setTimeout(function(){
+            layim.getMessage({
+                username: "贤心"
+                ,avatar: "//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
+                ,id: "100001"
+                ,type: "friend"
+                ,cid: Math.random()*100000|0 //模拟消息id，会赋值在li的data-cid上，以便完成一些消息的操作（如撤回），可不填
+                ,content: "嗨，欢迎体验LayIM。演示标记："+ new Date().getTime()
+            });
+        }, 2000);
+
+        //监听查看更多记录
+        layim.on('chatlog', function(data, ul){
+            console.log(data);
+            layim.panel({
+                title: '与 '+ data.username +' 的聊天记录' //标题
+                ,tpl: '<div style="padding: 10px;">这里是模版，{{d.data.test}}</div>' //模版
+                ,data: { //数据
+                    test: 'Hello'
+                }
+            });
+        });
+
+
+
+        //模拟"更多"有新动态
+        layim.showNew('More', true);
+        layim.showNew('find', true);
     });
 
 </script>
