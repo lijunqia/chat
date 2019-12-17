@@ -29,59 +29,70 @@
         var mobile = layui.mobile
             ,layim = mobile.layim
             ,layer = mobile.layer;
-        var ini_data = {{ $ini_data }};
 
-        //基础配置
-        layim.config({
-            init: {//我的信息
-                mine: ini_data.mine
-                //好友列表数据
-                ,friend: ini_data.friend
-                ,group: ini_data.group
-            }
-            // //获取群员接口（返回的数据格式见下文）
-            // ,members: {
-            //     url: '/group_members' //接口地址（返回的数据格式见下文）
-            //     ,type: 'get' //默认get，一般可不填
-            //     ,data: {} //额外参数
-            // }
-            //上传图片接口（返回的数据格式见下文），若不开启图片上传，剔除该项即可
-            ,uploadImage: {
-                url: '/upload?type=im_image&path=im' //接口地址
-                ,type: 'post' //默认post
-            }
-            //上传文件接口（返回的数据格式见下文），若不开启文件上传，剔除该项即可
-            ,uploadFile: {
-                url: '/upload?type=im_file&path=file' //接口地址
-                ,type: 'post' //默认post
-            }
-            // //扩展工具栏，下文会做进一步介绍（如果无需扩展，剔除该项即可）
-            // ,tool: [{
-            //     alias: 'code' //工具别名
-            //     ,title: '代码' //工具名称
-            //     ,icon: '&#xe64e;' //工具图标，参考图标文档
-            // }]
-            // ,msgbox: '/message_box' //消息盒子页面地址，若不开启，剔除该项即可
-            // ,find: '/find'//发现页面地址，若不开启，剔除该项即可
-            // ,chatLog: '/chat_log' //聊天记录页面地址，若不开启，剔除该项即可
+        $.getJSON('/userinfo',function (res) {
 
-            //扩展更多列表
-            ,moreList: [{
-                alias: 'find'
-                ,title: '发现'
-                ,iconUnicode: '&#xe628;' //图标字体的unicode，可不填
-                ,iconClass: '' //图标字体的class类名
-            },{
-                alias: 'share'
-                ,title: '分享与邀请'
-                ,iconUnicode: '&#xe641;' //图标字体的unicode，可不填
-                ,iconClass: '' //图标字体的class类名
-            }]
-            //,isNewFriend: false //是否开启“新的朋友”
-            ,isgroup: true //是否开启“群聊”
-            //,chatTitleColor: '#c00' //顶部Bar颜色
-            //,title: 'LayIM' //应用名，默认：我的IM
-        })
+            //基础配置
+            layim.config({
+                init: {//我的信息
+                    mine: res.mine
+                    //好友列表数据
+                    ,friend: res.friend
+                    ,group: res.group
+                }
+                // //获取群员接口（返回的数据格式见下文）
+                // ,members: {
+                //     url: '/group_members' //接口地址（返回的数据格式见下文）
+                //     ,type: 'get' //默认get，一般可不填
+                //     ,data: {} //额外参数
+                // }
+                //上传图片接口（返回的数据格式见下文），若不开启图片上传，剔除该项即可
+                ,uploadImage: {
+                    url: '/upload?type=im_image&path=im' //接口地址
+                    ,type: 'post' //默认post
+                }
+                //上传文件接口（返回的数据格式见下文），若不开启文件上传，剔除该项即可
+                ,uploadFile: {
+                    url: '/upload?type=im_file&path=file' //接口地址
+                    ,type: 'post' //默认post
+                }
+                // //扩展工具栏，下文会做进一步介绍（如果无需扩展，剔除该项即可）
+                // ,tool: [{
+                //     alias: 'code' //工具别名
+                //     ,title: '代码' //工具名称
+                //     ,icon: '&#xe64e;' //工具图标，参考图标文档
+                // }]
+                // ,msgbox: '/message_box' //消息盒子页面地址，若不开启，剔除该项即可
+                // ,find: '/find'//发现页面地址，若不开启，剔除该项即可
+                // ,chatLog: '/chat_log' //聊天记录页面地址，若不开启，剔除该项即可
+
+                //扩展更多列表
+                ,moreList: [{
+                    alias: 'find'
+                    ,title: '发现'
+                    ,iconUnicode: '&#xe628;' //图标字体的unicode，可不填
+                    ,iconClass: '' //图标字体的class类名
+                },{
+                    alias: 'share'
+                    ,title: '分享与邀请'
+                    ,iconUnicode: '&#xe641;' //图标字体的unicode，可不填
+                    ,iconClass: '' //图标字体的class类名
+                }]
+                //,isNewFriend: false //是否开启“新的朋友”
+                ,isgroup: true //是否开启“群聊”
+                //,chatTitleColor: '#c00' //顶部Bar颜色
+                ,title: '聊天室' //应用名，默认：我的IM
+                ,notice:true
+                //扩展工具栏，下文会做进一步介绍（如果无需扩展，剔除该项即可）
+                ,tool: [{
+                    alias: 'code' //工具别名
+                    ,title: '代码' //工具名称
+                    ,iconUnicode: '&#xe64e;' //工具图标，参考图标文档，可不填
+                    ,iconClass: '' //图标字体的class类名
+                }]
+            })
+        });
+
         //监听自定义工具栏点击，以添加代码为例
         //建立websocket连接
         socket = new WebSocket('ws://'+window.location.host+'/ws?sessionid={{ $sessionid }}');
