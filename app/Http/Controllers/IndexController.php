@@ -224,7 +224,7 @@ class IndexController extends Controller
     public function mobile(Request $request)
     {
         $sessionid = $request->session()->getId();
-        return view('mobile',['sessionid' => $sessionid,'ini_data'=>file_get_contents($request->url().'/userinfo')]);
+        return view('mobile',['sessionid' => $sessionid,'ini_data'=>file_get_contents($request->getBaseUrl().'/userinfo')]);
     }
 
 }
