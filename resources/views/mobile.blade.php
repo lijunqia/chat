@@ -29,14 +29,14 @@
         var mobile = layui.mobile
             ,layim = mobile.layim
             ,layer = mobile.layer;
-        var data = mobile.getJSON('/userinfo');
+        var ini_data = mobile.getJSON('/userinfo');
         //基础配置
         layim.config({
             init: {//我的信息
-                mine: data.mine
+                mine: ini_data.mine
                 //好友列表数据
-                ,friend: data.friend
-                ,group: data.group
+                ,friend: ini_data.friend
+                ,group: ini_data.group
             }
             // //获取群员接口（返回的数据格式见下文）
             // ,members: {
@@ -241,7 +241,7 @@
         layim.on('newFriend', function(){
             layim.panel({
                 title: '新的朋友' //标题
-                ,tpl: '<div style="padding: 10px;">自定义模版，{{d.data.test}}</div>' //模版
+                ,tpl: '<div style="padding: 10px;">自定义模版，</div>' //模版
                 ,data: { //数据
                     test: '么么哒'
                 }
@@ -273,7 +273,7 @@
                 case 'share':
                     layim.panel({
                         title: '邀请好友' //标题
-                        ,tpl: '<div style="padding: 10px;">自定义模版，{{d.data.test}}</div>' //模版
+                        ,tpl: '<div style="padding: 10px;">自定义模版，</div>' //模版
                         ,data: { //数据
                             test: '么么哒'
                         }
@@ -299,7 +299,7 @@
             console.log(data);
             layim.panel({
                 title: '与 '+ data.username +' 的聊天记录' //标题
-                ,tpl: '<div style="padding: 10px;">这里是模版，{{d.data.test}}</div>' //模版
+                ,tpl: '<div style="padding: 10px;">这里是模版，</div>' //模版
                 ,data: { //数据
                     test: 'Hello'
                 }
