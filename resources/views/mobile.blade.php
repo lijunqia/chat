@@ -23,6 +23,12 @@
             top: 0px !important;
             left:0px !important;
         }
+        .layim-chat-list{
+            width:60px;
+        }
+        .layim-chat-box{
+            margin-left:60px;
+        }
     </style>
 </head>
 <body>

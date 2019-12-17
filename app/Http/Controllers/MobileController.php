@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Storage;
 use Cache;
 use DB;
-class IndexController extends Controller
+class MobileController extends Controller
 {
     /**
      * @author woann<304550409@qq.com>
@@ -219,6 +219,12 @@ class IndexController extends Controller
         }
         return $this->json(0,'',$list);
 
+    }
+
+    public function mobile(Request $request)
+    {
+        $sessionid = $request->session()->getId();
+        return view('mobile',['sessionid' => $sessionid]);
     }
 
 }
