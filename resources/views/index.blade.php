@@ -41,7 +41,10 @@
         var readyState = socket.readyState;
         console.log("连接状态码："+readyState);
         if(readyState == 3)
-            socket = new WebSocket('ws://'+window.location.host+'/ws?sessionid={{ $sessionid }}');
+        {
+            window.location.reload();
+            return;
+        }
 
         socket.send(data)
     }
