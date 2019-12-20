@@ -79,18 +79,18 @@
 //                ,iconUnicode: '&#xe641;' //图标字体的unicode，可不填
 //                ,iconClass: '' //图标字体的class类名
 //            }]
-            //,isNewFriend: false //是否开启“新的朋友”
-            ,isgroup: true //是否开启“群聊”
-            //,chatTitleColor: '#c00' //顶部Bar颜色
+            ,isNewFriend: false //是否开启“新的朋友”
+//            ,isgroup: true //是否开启“群聊”
+            ,chatTitleColor: '#c00' //顶部Bar颜色
             ,title: '聊天室' //应用名，默认：我的IM
             ,notice:true
             //扩展工具栏，下文会做进一步介绍（如果无需扩展，剔除该项即可）
-            ,tool: [{
-                alias: 'code' //工具别名
-                ,title: '代码' //工具名称
-                ,iconUnicode: '&#xe64e;' //工具图标，参考图标文档，可不填
-                ,iconClass: '' //图标字体的class类名
-            }]
+//            ,tool: [{
+//                alias: 'code' //工具别名
+//                ,title: '代码' //工具名称
+//                ,iconUnicode: '&#xe64e;' //工具图标，参考图标文档，可不填
+//                ,iconClass: '' //图标字体的class类名
+//            }]
         })
         //监听自定义工具栏点击，以添加代码为例
         //建立websocket连接
@@ -183,17 +183,17 @@
                 }
             })
         });
-        layim.on('tool(code)', function(insert, send, obj){ //事件中的tool为固定字符，而code则为过滤器，对应的是工具别名（alias）
-            layer.prompt({
-                title: '插入代码'
-                ,formType: 2
-                ,shade: 0
-            }, function(text, index){
-                layer.close(index);
-                insert('[pre class=layui-code]' + text + '[/pre]'); //将内容插入到编辑器，主要由insert完成
-                //send(); //自动发送
-            });
-        });
+//        layim.on('tool(code)', function(insert, send, obj){ //事件中的tool为固定字符，而code则为过滤器，对应的是工具别名（alias）
+//            layer.prompt({
+//                title: '插入代码'
+//                ,formType: 2
+//                ,shade: 0
+//            }, function(text, index){
+//                layer.close(index);
+//                insert('[pre class=layui-code]' + text + '[/pre]'); //将内容插入到编辑器，主要由insert完成
+//                //send(); //自动发送
+//            });
+//        });
         layim.on('chatChange', function(obj){
             console.log(obj)
             var type = obj.data.type;
