@@ -15,6 +15,10 @@ class MobileController extends Controller
      */
     public function index(Request $request)
     {
+		if(!isMobile())
+		{
+			header('location:/');exit;
+		}
 		$session = session('user');
 		$user = DB::table('user')->find($session->user_id);
 		if (!$user) {
