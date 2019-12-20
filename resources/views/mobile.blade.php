@@ -67,17 +67,17 @@
             // ,chatLog: '/chat_log' //聊天记录页面地址，若不开启，剔除该项即可
 
             //扩展更多列表
-            ,moreList: [{
-                alias: 'find'
-                ,title: '发现'
-                ,iconUnicode: '&#xe628;' //图标字体的unicode，可不填
-                ,iconClass: '' //图标字体的class类名
-            },{
-                alias: 'share'
-                ,title: '分享与邀请'
-                ,iconUnicode: '&#xe641;' //图标字体的unicode，可不填
-                ,iconClass: '' //图标字体的class类名
-            }]
+//            ,moreList: [{
+//                alias: 'find'
+//                ,title: '发现'
+//                ,iconUnicode: '&#xe628;' //图标字体的unicode，可不填
+//                ,iconClass: '' //图标字体的class类名
+//            },{
+//                alias: 'share'
+//                ,title: '分享与邀请'
+//                ,iconUnicode: '&#xe641;' //图标字体的unicode，可不填
+//                ,iconClass: '' //图标字体的class类名
+//            }]
             //,isNewFriend: false //是否开启“新的朋友”
             ,isgroup: true //是否开启“群聊”
             //,chatTitleColor: '#c00' //顶部Bar颜色
@@ -244,26 +244,26 @@
         });
 
         //监听点击更多列表
-        layim.on('moreList', function(obj){
-            switch(obj.alias){
-                case 'find':
-                    layer.msg('自定义发现动作');
-
-                    //模拟标记“发现新动态”为已读
-                    layim.showNew('More', false);
-                    layim.showNew('find', false);
-                    break;
-                case 'share':
-                    layim.panel({
-                        title: '邀请好友' //标题
-                        ,tpl: '<div style="padding: 10px;">自定义模版，</div>' //模版
-                        ,data: { //数据
-                            test: '么么哒'
-                        }
-                    });
-                    break;
-            }
-        });
+//        layim.on('moreList', function(obj){
+//            switch(obj.alias){
+//                case 'find':
+//                    layer.msg('自定义发现动作');
+//
+//                    //模拟标记“发现新动态”为已读
+//                    layim.showNew('More', false);
+//                    layim.showNew('find', false);
+//                    break;
+//                case 'share':
+//                    layim.panel({
+//                        title: '邀请好友' //标题
+//                        ,tpl: '<div style="padding: 10px;">自定义模版，</div>' //模版
+//                        ,data: { //数据
+//                            test: '么么哒'
+//                        }
+//                    });
+//                    break;
+//            }
+//        });
 
 
         //监听查看更多记录
