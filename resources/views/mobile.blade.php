@@ -10,7 +10,7 @@
 <body>
 
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="/asset/layuiv2/layui.js"></script>
+<script src="/asset/layuiv2/layui.all.js"></script>
 
 <script>
     var socket;
@@ -281,8 +281,8 @@
 
 
         //模拟"更多"有新动态
-//        layim.showNew('More', true);
-//        layim.showNew('find', true);
+        layim.showNew('More', true);
+        layim.showNew('find', true);
     });
 
 </script>
