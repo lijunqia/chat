@@ -81,7 +81,7 @@
 //            }]
             ,isNewFriend: false //是否开启“新的朋友”
 //            ,isgroup: true //是否开启“群聊”
-            ,chatTitleColor: '#c00' //顶部Bar颜色
+//            ,chatTitleColor: '#c00' //顶部Bar颜色
             ,title: '聊天室' //应用名，默认：我的IM
             ,notice:true
             //扩展工具栏，下文会做进一步介绍（如果无需扩展，剔除该项即可）
