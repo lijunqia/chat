@@ -281,8 +281,8 @@
 
 
         //模拟"更多"有新动态
-        layim.showNew('More', true);
-        layim.showNew('find', true);
+//        layim.showNew('More', true);
+//        layim.showNew('find', true);
     });
 
 </script>
