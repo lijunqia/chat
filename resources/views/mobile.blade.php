@@ -30,7 +30,7 @@
             ,layim = mobile.layim
             ,layer = mobile.layer;
 
-        var userInfo = JSON.parse({{ $userInfo }});
+        var userData = JSON.parse({{ $userData }});
 
         //基础配置
         layim.config({
