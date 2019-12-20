@@ -30,15 +30,15 @@
             ,layim = mobile.layim
             ,layer = mobile.layer;
 
-        var userData = JSON.parse('{{ :json_encode($userData) }}');
+        var userData = JSON.parse('<?=json_encode($userData)?>');
 
         //基础配置
         layim.config({
             init: {//我的信息
-                mine: res.mine
+                mine: userData.mine
                 //好友列表数据
-                ,friend: res.friend
-                ,group: res.group
+                ,friend: userData.friend
+                ,group: userData.group
             }
             // //获取群员接口（返回的数据格式见下文）
             // ,members: {

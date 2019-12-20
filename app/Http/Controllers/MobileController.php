@@ -50,7 +50,7 @@ class MobileController extends Controller
 		];
         $sessionid = $request->session()->getId();
 
-        return view('mobile',['sessionid' => $sessionid,'userData'=>json_encode($data)]);
+        return view('mobile',['sessionid' => $sessionid,'userData'=>$data]);
     }
 
     public function chatLog(Request $request)
