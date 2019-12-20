@@ -102,6 +102,10 @@ class IndexController extends Controller
      */
     public function index(Request $request)
     {
+    	if(isMobile())
+		{
+			redirect('/mobile');
+		}
         $sessionid = $request->session()->getId();
         return view('index',['sessionid' => $sessionid]);
     }
