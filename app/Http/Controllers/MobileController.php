@@ -48,10 +48,9 @@ class MobileController extends Controller
 			"friend"    => $friend_groups,
 			"group"     => $groups
 		];
-		$userData = $this->json(0,'',$data);
         $sessionid = $request->session()->getId();
 
-        return view('mobile',['sessionid' => $sessionid,'userData'=>$userData]);
+        return view('mobile',['sessionid' => $sessionid,'userData'=>$data]);
     }
 
     public function chatLog(Request $request)
