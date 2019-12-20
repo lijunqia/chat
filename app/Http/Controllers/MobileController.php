@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Storage;
 use Cache;
@@ -15,7 +16,10 @@ class MobileController extends Controller
      */
     public function index(Request $request)
     {
+    	die($request->getUri());
         $sessionid = $request->session()->getId();
+        $client = new Client();
+        $res = $client->request('get',$request->getUri().'/userinfo?'.time());
         return view('mobile',['sessionid' => $sessionid]);
     }
 
