@@ -84,6 +84,11 @@
             ,msgbox: '/message_box' //消息盒子页面地址，若不开启，剔除该项即可
             ,find: '/find'//发现页面地址，若不开启，剔除该项即可
             ,chatLog: '/chat_log' //聊天记录页面地址，若不开启，剔除该项即可
+            ,isAudio: true //开启聊天工具栏音频
+            ,isVideo: true //开启聊天工具栏视频
+            ,initSkin: '3.jpg' //1-5 设置初始背景
+            ,notice: true //是否开启桌面消息提醒，默认false
+            ,voice: false //声音提醒，默认开启，声音文件为：default.mp3
         });
         //监听自定义工具栏点击，以添加代码为例
         //建立websocket连接
@@ -195,6 +200,11 @@
                 }
             }
         });
+        //监听在线状态的切换事件
+        layim.on('online', function(status){
+            layer.msg(status);
+        });
+
     });
 
 </script>
