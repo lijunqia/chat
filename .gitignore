@@ -1,3 +1,5 @@
 .idea
 .env
 .user.ini
+storage/laravels.json
+storage/laravels.pid
