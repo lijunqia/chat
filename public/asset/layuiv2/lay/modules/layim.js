@@ -984,6 +984,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     if(device.ie && device.ie < 9) return;
     var audio = document.createElement("audio");
     audio.src = layui.cache.dir+'css/modules/layim/voice/'+ cache.base.voice;
+    console.log(audio.src);
     audio.play();
   };
   
