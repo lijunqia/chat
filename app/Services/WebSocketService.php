@@ -123,6 +123,22 @@ class WebSocketService implements WebSocketHandlerInterface
         }
         //根据type字段判断消息类型并执行对应操作
         switch ($info->type) {
+			//在线状态的切换事件
+			case "onlineHide":
+				$data = [
+					"type"  => "friendStatus",
+					"uid"   => $info->data->mine->id,
+					"status"=> 'offline'
+				];
+				$friend_list = DB::table('friend')->where('user_id',$info->data->mine->id)->get();
+
+				foreach ($friend_list as $k => $v) {
+					if ( $v->id == $session->user_id) {
+						continue;
+					}
+					$this->sendByUid($server,$v->id,$data,true);
+				}
+				break;
             //心跳包
             case "ping":
                 break;

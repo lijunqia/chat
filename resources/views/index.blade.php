@@ -220,7 +220,7 @@
         });
         //监听查看群员
         layim.on('members', function(data){
-            //console.log(data);
+            console.log(data);
         });
         //监听签名修改
         layim.on('sign', function(value){
@@ -268,10 +268,10 @@
         });
         //监听在线状态的切换事件
         layim.on('online', function(status){
-            if(status == 'online')
-                layer.msg('好友上线');
-            else
-                layer.msg('好友下线');
+            sendMessage(socket,JSON.stringify({
+                type: 'onlineHide' //随便定义，用于在服务端区分消息类型
+                ,data: status
+            }));
         });
 
     });
