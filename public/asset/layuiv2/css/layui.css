@@ -390,43 +390,28 @@ a cite{font-style: normal; *cursor:pointer;}
   .layui-col-lg-offset12{margin-left: 100%;}
 }
 
-/* 列间隔 */
-.layui-col-space1{margin: -0.5px;}
+/* 列间隔 */.layui-col-space1{margin: -0.5px;}
 .layui-col-space1>*{padding: 0.5px;}
-.layui-col-space2{margin: -1px;}
-.layui-col-space2>*{padding: 1px;}
-.layui-col-space4{margin: -2px;}
-.layui-col-space4>*{padding: 2px;}
+.layui-col-space3{margin: -1.5px;}
+.layui-col-space3>*{padding: 1.5px;}
 .layui-col-space5{margin: -2.5px;}
 .layui-col-space5>*{padding: 2.5px;}
-.layui-col-space6{margin: -3px;}
-.layui-col-space6>*{padding: 3px;}
-.layui-col-space8{margin: -4px;}
-.layui-col-space8>*{padding: 4px;}
+.layui-col-space8{margin: -3.5px;}
+.layui-col-space8>*{padding: 3.5px;}
 .layui-col-space10{margin: -5px;}
 .layui-col-space10>*{padding: 5px;}
 .layui-col-space12{margin: -6px;}
 .layui-col-space12>*{padding: 6px;}
-.layui-col-space14{margin: -7px;}
-.layui-col-space14>*{padding: 7px;}
 .layui-col-space15{margin: -7.5px;}
 .layui-col-space15>*{padding: 7.5px;}
-.layui-col-space16{margin: -8px;}
-.layui-col-space16>*{padding: 8px;}
 .layui-col-space18{margin: -9px;}
 .layui-col-space18>*{padding: 9px;}
 .layui-col-space20{margin: -10px;}
 .layui-col-space20>*{padding: 10px;}
 .layui-col-space22{margin: -11px;}
 .layui-col-space22>*{padding: 11px;}
-.layui-col-space24{margin: -12px;}
-.layui-col-space24>*{padding: 12px;}
 .layui-col-space25{margin: -12.5px;}
 .layui-col-space25>*{padding: 12.5px;}
-.layui-col-space26{margin: -13px;}
-.layui-col-space26>*{padding: 13px;}
-.layui-col-space28{margin: -14px;}
-.layui-col-space28>*{padding: 14px;}
 .layui-col-space30{margin: -15px;}
 .layui-col-space30>*{padding: 15px;}
 
