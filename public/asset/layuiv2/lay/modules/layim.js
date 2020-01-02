@@ -1497,8 +1497,8 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     
     //关于
     ,about: function(){
-      layer.alert('聊天室', {
-        title: '关于'
+      layer.alert('版本： '+ v + '<br>版权所有：<a href="http://layim.layui.com" target="_blank">layim.layui.com</a>', {
+        title: '关于 LayIM'
         ,shade: false
       });
     }
@@ -1716,7 +1716,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
         }
       });
     }
-    
+
     //音频和视频
     ,media: function(othis){
       var type = othis.data('type'), text = {

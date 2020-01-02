@@ -1,0 +1,3 @@
+ALTER TABLE `c_group`
+ADD COLUMN `is_gag`  tinyint NULL DEFAULT 0 COMMENT '1½ûÑÔ' AFTER `avatar`;
+

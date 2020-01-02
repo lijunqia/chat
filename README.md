@@ -42,6 +42,10 @@
 * 此时访问`127.0.0.1:9501`即可进入登录页面
 * 测试账号 `test01` - `test04` 密码全是`123456`，当然你也可以自行注册。
 
+* http://pecl.php.net/package/inotify 
+* phpize && ./configure --with-php-config=/www/server/php/72/bin/php-config --enable-inotify && make && make install 
+* 一定要加上--enable-inotify否则会报错
+
 ## 配合nginx使用
 * nginx配置文件
 ```nginx

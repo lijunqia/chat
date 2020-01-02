@@ -128,7 +128,7 @@ class WebSocketService implements WebSocketHandlerInterface
 				$data = [
 					"type"  => "friendStatus",
 					"uid"   => $info->data->mine->id,
-					"status"=> 'offline'
+					"status"=> $info->data=='hide'?'offline':'online'
 				];
 				$friend_list = DB::table('friend')->where('user_id',$info->data->mine->id)->get();
 
