@@ -44,7 +44,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     options = $.extend({
       isfriend: !0
       ,isgroup: !0
-      ,voice: 'default.wav'
+      ,voice: 'default.mp3'
     }, options);
     if(!window.JSON || !window.JSON.parse) return;
     init(options);
@@ -984,7 +984,6 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     if(device.ie && device.ie < 9) return;
     var audio = document.createElement("audio");
     audio.src = layui.cache.dir+'css/modules/layim/voice/'+ cache.base.voice;
-    console.log(audio.src);
     audio.play();
   };
   
@@ -1498,8 +1497,8 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     
     //关于
     ,about: function(){
-      layer.alert('版本： '+ v + '<br>版权所有：<a href="http://layim.layui.com" target="_blank">layim.layui.com</a>', {
-        title: '关于 LayIM'
+      layer.alert('聊天室', {
+        title: '关于'
         ,shade: false
       });
     }

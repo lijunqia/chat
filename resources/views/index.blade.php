@@ -8,35 +8,26 @@
     <meta name="format-detection" content="telephone=no">
     <title>聊天室</title>
     <link rel="stylesheet" href="/asset/layuiv2/css/layui.css" media="all">
-    <style>
-        .layui-edge{
-            display: block;
-        }
-    </style>
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo">layui 后台布局</div>
+        <div class="layui-logo">聊天室</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="">控制台</a></li>
-            <li class="layui-nav-item"><a href="">商品管理</a></li>
             <li class="layui-nav-item"><a href="">用户</a></li>
             <li class="layui-nav-item">
-                <a href="javascript:;">其它系统</a>
+                <a href="javascript:;">其它</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">邮件管理</a></dd>
                     <dd><a href="">消息管理</a></dd>
-                    <dd><a href="">授权管理</a></dd>
                 </dl>
             </li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                    贤心
+                    <a href="javascript:;"><img src="{{ session('user')->avatar }}" class="layui-nav-img">{{ session('user')->username }}</a>
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
@@ -52,24 +43,19 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">所有商品</a>
+                    <a class="" href="javascript:;">用户</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">列表一</a></dd>
-                        <dd><a href="javascript:;">列表二</a></dd>
-                        <dd><a href="javascript:;">列表三</a></dd>
-                        <dd><a href="">超链接</a></dd>
+                        <dd><a href="javascript:;">用户管理</a></dd>
+                        <dd><a href="javascript:;">好友管理</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">解决方案</a>
+                    <a href="javascript:;">群组</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">列表一</a></dd>
-                        <dd><a href="javascript:;">列表二</a></dd>
-                        <dd><a href="">超链接</a></dd>
+                        <dd><a href="javascript:;">群组管理</a></dd>
+                        <dd><a href="javascript:;">群组用户</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="">云市场</a></li>
-                <li class="layui-nav-item"><a href="">发布商品</a></li>
             </ul>
         </div>
     </div>
@@ -144,7 +130,7 @@
             ,isVideo: true //开启聊天工具栏视频
             ,initSkin: '3.jpg' //1-5 设置初始背景
 //            ,notice: true //是否开启桌面消息提醒，默认false
-//            ,voice: 'default.wav' //声音提醒，默认开启，声音文件为：default.mp3
+//            ,voice: 'default.mp3' //声音提醒，默认开启，声音文件为：default.mp3
             //,brief: true //是否简约模式（若开启则不显示主面板）
             //,title: 'WebIM' //自定义主面板最小化时的标题
             //,right: '100px' //主面板相对浏览器右侧距离
@@ -282,7 +268,10 @@
         });
         //监听在线状态的切换事件
         layim.on('online', function(status){
-            layer.msg(status);
+            if(status == 'online')
+                layer.msg('好友上线');
+            else
+                layer.msg('好友下线');
         });
 
     });
