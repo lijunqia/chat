@@ -143,8 +143,8 @@
             ,isAudio: true //开启聊天工具栏音频
             ,isVideo: true //开启聊天工具栏视频
             ,initSkin: '3.jpg' //1-5 设置初始背景
-            ,notice: true //是否开启桌面消息提醒，默认false
-            ,voice: true //声音提醒，默认开启，声音文件为：default.mp3
+//            ,notice: true //是否开启桌面消息提醒，默认false
+            ,voice: 'default.mp3' //声音提醒，默认开启，声音文件为：default.mp3
             //,brief: true //是否简约模式（若开启则不显示主面板）
             //,title: 'WebIM' //自定义主面板最小化时的标题
             //,right: '100px' //主面板相对浏览器右侧距离
@@ -166,11 +166,15 @@
         socket.onmessage = function(res){
             console.log('接收到数据'+ res.data);
             data = JSON.parse(res.data);
+            console.log(data)
             switch (data.type) {
                 case "friend":
                 case "group":
-                    console.log(data)
+                    if(data.type === 'friend')
+                        layim.setChatStatus('<span style="color:#FF5722;">对方正在输入。。。</span>');
                     layim.getMessage(data); //res.data即你发送消息传递的数据（阅读：监听发送的消息）
+                    if(data.type === 'friend')
+                        layim.setChatStatus('<span style="color:#FF5722;">在线</span>');
                     break;
                 //单纯的弹出
                 case "layer":
@@ -223,9 +227,6 @@
         layim.on('sendMessage', function(res){
             var mine = res.mine; //包含我发送的消息及我的信息
             var to = res.to; //对方的信息
-            if(to.type === 'friend'){
-                layim.setChatStatus('<span style="color:#FF5722;">对方正在输入。。。</span>');
-            }
             sendMessage(socket,JSON.stringify({
                 type: 'chatMessage' //随便定义，用于在服务端区分消息类型
                 ,data: res
