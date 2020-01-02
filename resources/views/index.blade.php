@@ -144,7 +144,7 @@
             ,isVideo: true //开启聊天工具栏视频
             ,initSkin: '3.jpg' //1-5 设置初始背景
 //            ,notice: true //是否开启桌面消息提醒，默认false
-            ,voice: 'default.mp3' //声音提醒，默认开启，声音文件为：default.mp3
+//            ,voice: 'default.wav' //声音提醒，默认开启，声音文件为：default.mp3
             //,brief: true //是否简约模式（若开启则不显示主面板）
             //,title: 'WebIM' //自定义主面板最小化时的标题
             //,right: '100px' //主面板相对浏览器右侧距离

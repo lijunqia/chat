@@ -44,7 +44,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     options = $.extend({
       isfriend: !0
       ,isgroup: !0
-      ,voice: 'default.mp3'
+      ,voice: 'default.wav'
     }, options);
     if(!window.JSON || !window.JSON.parse) return;
     init(options);
