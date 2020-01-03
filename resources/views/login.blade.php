@@ -17,7 +17,6 @@
                 left: 5% !important;
                 min-width: 90% !important;
                 top: 10% !important;
-                height: 80% !important;
             }
         }
 
@@ -60,7 +59,7 @@
             title: '注册',
             shadeClose: true,
             shade: 0.8,
-            area: ['40%', '70%'],
+            area: ['40%', '80%'],
             content: '/register' //iframe的url
         });
     }
