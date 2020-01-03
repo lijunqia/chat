@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="layui-row">
-    <div class="layui-col-xs12 layui-col-sm12 layui-col-md12 layui-col-lg6" style="padding-top: 50px;padding-right: 20px;">
+    <div class="layui-col-xs12 layui-col-sm12 layui-col-md12 layui-col-lg6" style="padding-top: 20px;padding-right: 20px;">
         <form class="layui-form " action="">
             <div class="layui-form-item">
                 <label class="layui-form-label">用户名</label>

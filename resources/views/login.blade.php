@@ -11,6 +11,15 @@
     <link rel="stylesheet" type="text/css" href="/asset/layui/css/layui.css" />
     <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="/asset/layui/layui.js"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            .layer-anim{
+                left: 24px !important;
+                min-width: 350px !important;
+            }
+        }
+
+    </style>
 </head>
 <body>
 <div class="container demo-1">
