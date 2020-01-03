@@ -14,8 +14,10 @@
     <style>
         @media screen and (max-width: 768px) {
             .layer-anim{
-                left: 24px !important;
-                min-width: 350px !important;
+                left: 5% !important;
+                min-width: 90% !important;
+                top: 10% !important;
+                height: 80% !important;
             }
         }
 
