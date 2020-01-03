@@ -1,3 +1,21 @@
 ALTER TABLE `c_group`
-ADD COLUMN `is_gag`  tinyint NULL DEFAULT 0 COMMENT '1禁言' AFTER `avatar`;
+ADD COLUMN `status`  tinyint NULL DEFAULT 1 COMMENT '1正常 2全体禁言' AFTER `avatar`;
+
+ALTER TABLE `c_group`
+ADD COLUMN `approval`  tinyint NULL DEFAULT 0 COMMENT '0无需验证 1需要验证' AFTER `status`,
+ADD COLUMN `number`  int NULL DEFAULT 0 COMMENT '人数' AFTER `approval`,
+ADD COLUMN `desc`  varchar(255) NULL COMMENT '描述' AFTER `number`;
+
+ALTER TABLE `c_group_member`
+ADD COLUMN `status`  tinyint NULL DEFAULT 1 COMMENT '1正常 2为该群黑名单' AFTER `user_id`,
+ADD COLUMN `add_time`  int NULL DEFAULT 0 COMMENT '加群时间' AFTER `status`,
+ADD COLUMN `type`  int NULL DEFAULT 0 COMMENT '1群主 2 管理员 0会员' AFTER `add_time`,
+ADD COLUMN `gag_time`  int(255) NULL DEFAULT 0 COMMENT '禁言到某个时间' AFTER `type`,
+ADD COLUMN `nickname`  varchar(128) NULL COMMENT '群员的群昵称' AFTER `gag_time`,
+ADD INDEX (`group_id`) ,
+ADD INDEX (`user_id`) ,
+ADD INDEX (`status`) ;
+
+ALTER TABLE `c_group_member`
+MODIFY COLUMN `type`  int(11) NULL DEFAULT 3 COMMENT '1群主 2 管理员 3会员' AFTER `add_time`;
 

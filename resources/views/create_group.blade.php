@@ -15,7 +15,28 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">群名称</label>
                 <div class="layui-input-block">
-                    <input type="text" name="groupname" required  lay-verify="required" placeholder="请输入群名" autocomplete="off" class="layui-input">
+                    <input type="text" name="groupname" required  lay-verify="required" placeholder="为你们的群取个给力的名字吧" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">群简介</label>
+                <div class="layui-input-block">
+                    <input type="text" name="desc" id="desc" autocomplete="off" placeholder="简单介绍一下吧！" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">群规模</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="number" value="200" title="200人">
+                    <input type="radio" name="number" value="500" title="500人" checked="">
+                    <input type="radio" name="number" value="1000" title="1000人">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">加群验证</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="approval" value="1" title="需要验证" checked="">
+                    <input type="radio" name="approval" value="-1" title="无需验证">
                 </div>
             </div>
             <div class="layui-form-item">

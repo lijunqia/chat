@@ -12,16 +12,7 @@
         token: null,
     };
 
-    var conn = new WebIM.connection({
-        isMultiLoginSessions: WebIM.config.isMultiLoginSessions,
-        https: typeof WebIM.config.https === 'boolean' ? WebIM.config.https : location.protocol === 'https:',
-        url: WebIM.config.xmppURL,
-        heartBeatWait: WebIM.config.heartBeatWait,
-        autoReconnectNumMax: WebIM.config.autoReconnectNumMax,
-        autoReconnectInterval: WebIM.config.autoReconnectInterval,
-        apiUrl: WebIM.config.apiURL,
-        isAutoLogin: true
-    });
+    var conn = new WebSocket('ws://'+window.location.host+'/ws?sessionid='+WebIM.config.sessionid);
     var socket = {
         config: function (options) {
             conf = $.extend(conf, options); //把layim继承出去，方便在register中使用
@@ -37,8 +28,12 @@
                 });
                 //监听签名修改
                 layim.on('sign', function (value) {
-                    $.post('class/doAction.php?action=change_sign', {sign: value}, function (data) {
-                        console.log('签名修改'+data);
+                    $.post('/update_sign', {sign: value}, function (data) {
+                        if(res.code == 200){
+                            layer.msg(res.msg)
+                        }else{
+                            layer.msg(res.msg,function () {})
+                        }
                     });
                 });
                 //监听layim建立就绪
@@ -505,8 +500,8 @@
                           ,type: "group" //聊天窗口类型
                           ,content: msg
                         });                     
-                };
-            };
+                }
+            }
             if (message.type == 'chat') {
                 var type = 'friend';
                 var id = message.from;
@@ -765,7 +760,8 @@
                         };
                         conn.joinGroup(options);                           
                     }
-                },function(){
+                }
+                ,close:function(){
                     layer.close(index);
                 }
             });            
@@ -1004,10 +1000,11 @@
                   id: info.id
                 });
                 $.get(members, function(res){
+                    console.log(res);
                     var resp = eval('(' + res + ')');
                     var html = '<ul class="layui-unselect layim-group-list groupMembers" data-groupidx="'+info.id+'" style="height: 510px; display: block;right:-200px;padding-top: 10px;">';
                     layui.each(resp.data.list, function(index, item){
-                        html += '<li  id="'+item.id+'" isfriend="'+item.friendship+'" manager="'+item.type+'" gagTime="'+item.gagTime+'"><img src="'+ item.avatar +'">';
+                        html += '<li  id="'+item.id+'" isfriend="'+item.friendship+'" manager="'+item.type+'" gagTime="'+item.gag_time+'"><img src="'+ item.avatar +'">';
                         item.type == 1?
                             (html += '<span style="color:#e24242">'+ item.username +'</span><i class="layui-icon" style="color:#e24242">&#xe612;</i>'):
                             (item.type == 2?

@@ -95,7 +95,10 @@ class GroupController extends Controller
             $data = [
                 'groupname' => $post['groupname'],
                 'user_id'   => $session->user_id,
-                'avatar'    => $post['avatar']
+                'avatar'    => $post['avatar'],
+				'approval'    => $post['approval'],
+				'number'    => $post['number'],
+				'desc'    => $post['desc'],
             ];
             DB::beginTransaction();
             $group_id = DB::table('group')->insertGetId($data);
