@@ -1471,7 +1471,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
         ,title: '查找'
         ,shade: false
         ,maxmin: true
-        ,area: ['800px', '600px']
+        ,area: ['1000px', '600px']
         ,skin: 'layui-box layui-layer-border'
         ,resize: false
         ,content: cache.base.find
