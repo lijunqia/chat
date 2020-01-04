@@ -7,32 +7,70 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <title>聊天室</title>
-    <link rel="stylesheet" href="/asset/layui/css/layuiv2.css" media="all">
-    <style>
-        .layui-edge{
-            display: block;
-        }
-    </style>
+    <link rel="stylesheet" href="/asset/layuiv2/css/layui.css" media="all">
 </head>
-<body>
+<body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
-    <div class="layui-header header header-demo" winter1>
-        <div class="layui-main">
-<ul class="layui-nav" >
+    <div class="layui-header">
+        <div class="layui-logo">聊天室</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="">控制台</a></li>
+            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">其它</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">消息管理</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <a href="javascript:;"><img src="{{ session('user')->avatar }}" class="layui-nav-img">{{ session('user')->username }}</a>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退了</a></li>
+        </ul>
+    </div>
 
-    <li class="layui-nav-item" style="float: right;">
-        <a href="javascript:;"><img src="{{ session('user')->avatar }}" class="layui-nav-img">{{ session('user')->username }}</a>
-        <dl class="layui-nav-child">
-            <dd><a href="/loginout">退出登录</a></dd>
-        </dl>
-    </li>
-    <li class="layui-nav-item layui-this"><a href="/">首页</a></li>
-</ul>
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">用户</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">用户管理</a></dd>
+                        <dd><a href="javascript:;">好友管理</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">群组</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">群组管理</a></dd>
+                        <dd><a href="javascript:;">群组用户</a></dd>
+                    </dl>
+                </li>
+            </ul>
         </div>
     </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">内容主体区域</div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © 2020
+    </div>
 </div>
-<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="/asset/layui/layui.js"></script>
+<script src="/asset/layuiv2/layui.js"></script>
 
 <script>
     var socket;
@@ -48,10 +86,14 @@
 
         socket.send(data)
     }
-    layui.use('element', function(){
-        var element = layui.element;
-    });
-    layui.use('layim', function(layim){
+
+    layui.use(['element', 'layim'], function(){
+        var $ = layui.$
+            ,layim = layui.layim
+            ,element = layui.element
+            ,router = layui.router();
+
+
         //基础配置
         layim.config({
             init: {
@@ -87,8 +129,15 @@
             ,isAudio: true //开启聊天工具栏音频
             ,isVideo: true //开启聊天工具栏视频
             ,initSkin: '3.jpg' //1-5 设置初始背景
-            ,notice: true //是否开启桌面消息提醒，默认false
+//            ,notice: true //是否开启桌面消息提醒，默认false
 //            ,voice: 'default.mp3' //声音提醒，默认开启，声音文件为：default.mp3
+            //,brief: true //是否简约模式（若开启则不显示主面板）
+            //,title: 'WebIM' //自定义主面板最小化时的标题
+            //,right: '100px' //主面板相对浏览器右侧距离
+            //,minRight: '90px' //聊天面板最小化时相对浏览器右侧距离
+            //,isfriend: false //是否开启好友
+            //,isgroup: false //是否开启群组
+            //,min: true //是否始终最小化主面板，默认false
         });
         //监听自定义工具栏点击，以添加代码为例
         //建立websocket连接
@@ -103,11 +152,15 @@
         socket.onmessage = function(res){
             console.log('接收到数据'+ res.data);
             data = JSON.parse(res.data);
+            console.log(data)
             switch (data.type) {
                 case "friend":
                 case "group":
-                    console.log(data)
+                    if(data.type === 'friend')
+                        layim.setChatStatus('<span style="color:#FF5722;">对方正在输入。。。</span>');
                     layim.getMessage(data); //res.data即你发送消息传递的数据（阅读：监听发送的消息）
+                    if(data.type === 'friend')
+                        layim.setChatStatus('<span style="color:#FF5722;">在线</span>');
                     break;
                 //单纯的弹出
                 case "layer":
@@ -150,7 +203,10 @@
         socket.onclose = function(){
             console.log("websocket is closed")
             clearInterval(ping)
-        }
+        };
+
+
+        //监听发送消息
         layim.on('sendMessage', function(res){
             var mine = res.mine; //包含我发送的消息及我的信息
             var to = res.to; //对方的信息
@@ -159,6 +215,11 @@
                 ,data: res
             }));
         });
+        //监听查看群员
+        layim.on('members', function(data){
+            console.log(data);
+        });
+        //监听签名修改
         layim.on('sign', function(value){
             console.log(value); //获得新的签名
             $.ajax({
@@ -178,6 +239,7 @@
                 }
             })
         });
+        //监听自定义工具栏点击，以添加代码为例
         layim.on('tool(code)', function(insert, send, obj){ //事件中的tool为固定字符，而code则为过滤器，对应的是工具别名（alias）
             layer.prompt({
                 title: '插入代码'
@@ -189,6 +251,7 @@
                 //send(); //自动发送
             });
         });
+        //监听聊天窗口的切换
         layim.on('chatChange', function(obj){
             console.log(obj)
             var type = obj.data.type;
@@ -202,7 +265,10 @@
         });
         //监听在线状态的切换事件
         layim.on('online', function(status){
-            layer.msg(status);
+            sendMessage(socket,JSON.stringify({
+                type: 'onlineHide' //随便定义，用于在服务端区分消息类型
+                ,data: status
+            }));
         });
 
     });
