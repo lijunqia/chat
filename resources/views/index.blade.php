@@ -88,7 +88,7 @@
             ,isVideo: true //开启聊天工具栏视频
             ,initSkin: '3.jpg' //1-5 设置初始背景
             ,notice: true //是否开启桌面消息提醒，默认false
-            ,voice: true //声音提醒，默认开启，声音文件为：default.mp3
+//            ,voice: 'default.mp3' //声音提醒，默认开启，声音文件为：default.mp3
         });
         //监听自定义工具栏点击，以添加代码为例
         //建立websocket连接
