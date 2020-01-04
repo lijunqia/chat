@@ -104,8 +104,7 @@ class IndexController extends Controller
     {
     	if(isMobile())
 		{
-			redirect('/mobile');
-//			header('location:/mobile');
+			header('location:/mobile');
 			return;
 		}
         $sessionid = $request->session()->getId();
@@ -235,8 +234,7 @@ class IndexController extends Controller
 	{
 		if(!isMobile())
 		{
-			redirect('/');
-//			header('location:/');
+			header('location:/');
 			return;
 		}
 		$session = session('user');
