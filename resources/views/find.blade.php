@@ -137,7 +137,7 @@
             title: '创建群',
             shadeClose: true,
             shade: 0.8,
-            area: ['40%', '70%'],
+            area: ['50%', '80%'],
             content: '/create_group' //iframe的url
         });
     }
