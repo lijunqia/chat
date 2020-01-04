@@ -50,7 +50,8 @@ class GroupController extends Controller
             default :
                 break;
         }
-        return view('find',['user_list' => $user_list,'group_list' => $group_list,'type' => $type,'wd' => $wd]);
+		$session = session('user');
+        return view('find',['user_list' => $user_list,'group_list' => $group_list,'type' => $type,'wd' => $wd,'session' => $session]);
     }
 
     /**

@@ -13,7 +13,9 @@
     <div class="layui-tab layui-tab-brief">
         <ul class="layui-tab-title">
             <li @if($type == 'user'  || $type == '')  class="layui-this" @endif>找人</li>
+            @if($session->user_id == 10001)
             <li @if($type == 'group')  class="layui-this" @endif>找群</li>
+            @endif
         </ul>
         <div class="layui-tab-content">
             <div class="layui-tab-item @if($type == 'user' || $type == '')  layui-show @endif">
@@ -39,6 +41,7 @@
                     @endforeach
                 </div>
             </div>
+            @if($session->user_id == 10001)
             <div class="layui-tab-item @if($type == 'group')  layui-show @endif">
                 <div>
                     <input  style="float: left;width: 80%;" type="text" id="group-wd" required lay-verify="required" placeholder="请输入群Id/群名称" autocomplete="off" class="layui-input" @if($type == 'group') value="{{ $wd }}" @endif>
@@ -63,6 +66,7 @@
                     </div>
                 @endforeach
             </div>
+            @endif
         </div>
     </div>
 </div>
