@@ -17,7 +17,8 @@ class MobileController extends Controller
     {
 		if(!isMobile())
 		{
-			header('location:/');
+			redirect('/');
+//			header('location:/');
 			return;
 		}
 		$session = session('user');
