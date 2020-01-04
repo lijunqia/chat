@@ -1471,7 +1471,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
         ,title: '查找'
         ,shade: false
         ,maxmin: true
-        ,area: ['1000px', '520px']
+        ,area: ['800px', '600px']
         ,skin: 'layui-box layui-layer-border'
         ,resize: false
         ,content: cache.base.find
@@ -1497,8 +1497,8 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     
     //关于
     ,about: function(){
-      layer.alert('版本： '+ v + '<br>版权所有：<a href="http://layim.layui.com" target="_blank">layim.layui.com</a>', {
-        title: '关于 LayIM'
+      layer.alert('&copy 2020', {
+        title: '关于'
         ,shade: false
       });
     }
