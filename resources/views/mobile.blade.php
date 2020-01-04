@@ -88,7 +88,7 @@
 //            ,chatTitleColor: '#c00' //顶部Bar颜色
             ,title: '聊天室' //应用名，默认：我的IM
             ,notice:true
-            ,voice: false //声音提醒，默认开启，声音文件为：default.mp3
+//            ,voice: 'default.mp3' //声音提醒，默认开启，声音文件为：default.mp3
             ,isAudio: true //开启聊天工具栏音频
             ,isVideo: true //开启聊天工具栏视频
             //扩展工具栏，下文会做进一步介绍（如果无需扩展，剔除该项即可）
@@ -139,11 +139,11 @@
                 //消息盒子
                 case "msgBox" :
                     //为了等待页面加载，不然找不到消息盒子图标节点
-                    setTimeout(function(){
-                        if(data.count > 0){
-                            layim.msgbox(data.count);
-                        }
-                    },1000);
+//                    setTimeout(function(){
+//                        if(data.count > 0){
+//                            layim.msgbox(data.count);
+//                        }
+//                    },1000);
                     break;
                 //token过期
                 case "token_expire":
