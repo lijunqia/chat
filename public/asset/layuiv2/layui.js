@@ -71,6 +71,7 @@
     
     ,mobile: 'modules/mobile' //移动大模块 | 若当前为开发目录，则为移动模块入口，否则为移动模块集合
     ,'layui.all': '../layui.all' //PC模块合并版
+    ,socket: 'modules/socket' //socket
   };
 
   //记录基础数据

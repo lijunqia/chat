@@ -228,13 +228,69 @@
         initListener: function (user,pwd) { //初始化监听
             // console.log('注册服务连接监听事件');
             // var layim = conf.layim;
-            var options = {
-              apiUrl: WebIM.config.apiURL,
-              user: user,
-              pwd: pwd,
-              appKey: WebIM.config.appkey
+            conn.onopen = function(){
+                console.log("websocket is connected")
+                ping = setInterval(function () {
+                    sendMessage(socket,'{"type":"ping"}');
+                    console.log("ping...");
+                },1000 * 10)
             };
-            conn.open(options);
+            conn.onmessage = function(res){
+                console.log('接收到数据'+ res.data);
+                data = JSON.parse(res.data);
+                console.log(data)
+                switch (data.type) {
+                    case "friend":
+                    case "group":
+                        if(data.type === 'friend')
+                            layim.setChatStatus('<span style="color:#FF5722;">对方正在输入。。。</span>');
+                        layim.getMessage(data); //res.data即你发送消息传递的数据（阅读：监听发送的消息）
+                        if(data.type === 'friend')
+                            layim.setChatStatus('<span style="color:#FF5722;">在线</span>');
+                        break;
+                    //单纯的弹出
+                    case "layer":
+                        if (data.code == 200) {
+                            layer.msg(data.msg)
+                        } else {
+                            layer.msg(data.msg,function(){})
+                        }
+                        break;
+                    //将新好友添加到列表
+                    case "addList":
+                        console.log(data.data)
+                        layim.addList(data.data);
+                        break;
+                    //好友上下线变更
+                    case "friendStatus" :
+                        console.log(data.status)
+                        layim.setFriendStatus(data.uid, data.status);
+                        break;
+                    //消息盒子
+                    case "msgBox" :
+                        //为了等待页面加载，不然找不到消息盒子图标节点
+                        setTimeout(function(){
+                            if(data.count > 0){
+                                layim.msgbox(data.count);
+                            }
+                        },1000);
+                        break;
+                    //token过期
+                    case "token_expire":
+                        window.location.reload();
+                        break;
+                    //加群提醒
+                    case "joinNotify":
+                        layim.getMessage(data.data);
+                        break;
+
+                }
+            };
+            conn.onclose = function(){
+                console.log("websocket is closed")
+                clearInterval(ping)
+            };
+
             conn.listen({
                 onOpened: function ( message ) { 
                     //连接成功回调
@@ -457,6 +513,21 @@
         },
         //自定义消息，把消息格式定义为layim的消息类型
         defineMessage: function (message,msgType) {
+            var readyState = conn.readyState;
+            console.log("连接状态码："+readyState);
+            if(readyState == 3)
+            {
+                window.location.reload();
+                return;
+            }
+            data = JSON.stringify({
+                type: msgType //随便定义，用于在服务端区分消息类型
+                ,data: message
+            })
+            conn.send(data);
+
+
+
             var msg;
             switch (msgType) 
             {
@@ -522,7 +593,7 @@
             var id = conn.getUniqueId();
             var content = data.mine.content;
             var msg = new WebIM.message('txt', id);    // 创建文本消息
-                               
+
             msg.set({
                 msg: data.mine.content,   
                 to: data.to.id,                        // 接收消息对象（用户id）
