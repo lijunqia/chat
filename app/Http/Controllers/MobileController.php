@@ -17,7 +17,8 @@ class MobileController extends Controller
     {
 		if(!isMobile())
 		{
-			header('location:/');exit;
+			header('location:/');
+			return;
 		}
 		$session = session('user');
 		$user = DB::table('user')->find($session->user_id);
