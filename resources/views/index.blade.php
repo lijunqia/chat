@@ -265,10 +265,10 @@
         });
         //监听在线状态的切换事件
         layim.on('online', function(status){
-            sendMessage(socket,JSON.stringify({
-                type: 'onlineHide' //随便定义，用于在服务端区分消息类型
-                ,data: status
-            }));
+//            sendMessage(socket,JSON.stringify({
+//                type: 'onlineHide' //随便定义，用于在服务端区分消息类型
+//                ,data: status
+//            }));
         });
 
     });
