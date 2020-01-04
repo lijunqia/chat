@@ -69,25 +69,25 @@ class IndexController extends Controller
                 'user_id' => $user_id,
                 'groupname' => '默认分组'
             ]);
-            //将用户添加到所有人都在群
-            DB::table('group_member')->insert([
-                'user_id' => $user_id,
-                'group_id' => 10001
-            ]);
-            //将用户和我互相添加为好友
-            $friend_data = [
-                [
-                    'user_id'       =>  10001,
-                    'friend_id'     =>  $user_id,
-                    'friend_group_id'  =>  147
-                ],
-                [
-                    'user_id'       =>  $user_id,
-                    'friend_id'     =>  10001,
-                    'friend_group_id'  =>  $friend_group_id
-                ],
-            ];
-            DB::table('friend')->insert($friend_data);
+//            //将用户添加到所有人都在群
+//            DB::table('group_member')->insert([
+//                'user_id' => $user_id,
+//                'group_id' => 10001
+//            ]);
+//            //将用户和我互相添加为好友
+//            $friend_data = [
+//                [
+//                    'user_id'       =>  10001,
+//                    'friend_id'     =>  $user_id,
+//                    'friend_group_id'  =>  147
+//                ],
+//                [
+//                    'user_id'       =>  $user_id,
+//                    'friend_id'     =>  10001,
+//                    'friend_group_id'  =>  $friend_group_id
+//                ],
+//            ];
+//            DB::table('friend')->insert($friend_data);
             return $this->json(200,'注册成功');
         } else {
             $code_hash = uniqid().uniqid();
