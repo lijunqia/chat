@@ -90,11 +90,12 @@
         socket.send(data)
     }
 
-    layui.use(['element', 'layim'], function(){
+    layui.use(['element', 'layim','contextMenu'], function(){
         var $ = layui.$
             ,layim = layui.layim
             ,element = layui.element
             ,router = layui.router();
+        var contextMenu = layui.contextMenu;
 
 
         //基础配置
@@ -213,6 +214,15 @@
             clearInterval(ping)
         };
 
+        //监听layim建立就绪
+        layim.on('ready', function (res) {
+            console.log("layim ready")
+            console.log(res)
+//            if (res.type == 'msgBox') {
+//                layim.msgbox(res.data.count); //消息盒子有新消息
+//            }
+            layim.contextMenu();
+        });
 
         //监听发送消息
         layim.on('sendMessage', function(res){
