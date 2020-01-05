@@ -250,7 +250,7 @@
                 //弹出面板
                 layim.panel({
                     title: title //标题
-                    ,tpl: '<div style="padding: 10px;">自定义模版，{{d.data.path}}</div>' //模版，基于laytpl语法
+                    ,tpl: '<div style="padding: 10px;">自定义模版，chat_log</div>' //模版，基于laytpl语法
                     ,data: { //数据
                         rows: res.data //假设rows为群组成员
                     }
