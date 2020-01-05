@@ -125,8 +125,8 @@ class WebSocketService implements WebSocketHandlerInterface
         switch ($info->type) {
 			//在线状态的切换事件
 			case "changeStatus":
-				print_r($session);
-				print_r($session->user_id);
+//				print_r($session);
+//				print_r($session->user_id);
 				DB::table('user')->where('id', $session->user_id)->update(['status' => $info->status]);//标记为在线
 				$friend_list = DB::table('friend')->where('user_id',$session->user_id)->get();
 
