@@ -179,6 +179,11 @@
                 case "friendStatus" :
                     console.log("friendStatus");
                     layim.setFriendStatus(data.uid, data.status);
+                    if(data.status == 'online'){
+                        layim.setChatStatus('<span style="color:#FF5722;">在线</span>'); //模拟标注好友在线状态
+                    }else{
+                        layim.setChatStatus('<span style="color:#666;">离线</span>'); //模拟标注好友在线状态
+                    }
                     break;
                 //消息盒子
                 case "msgBox" :
@@ -266,22 +271,7 @@
         //监听在线状态的切换事件
         layim.on('online', function(status){
             console.log(status);
-//            $.ajax({
-//                url:"/change_status",
-//                type:"post",
-//                data:{sign:value},
-//                dataType:"json",
-//                success:function (res) {
-//                    if(res.code == 200){
-//                        layer.msg(res.msg)
-//                    }else{
-//                        layer.msg(res.msg,function () {})
-//                    }
-//                },
-//                error:function () {
-//                    layer.msg("网络繁忙",function(){});
-//                }
-//            })
+
             var data = {}
             data.type='changeStatus';
             data.status = status;

@@ -130,15 +130,15 @@ class WebSocketService implements WebSocketHandlerInterface
 				DB::table('user')->where('id', $session->user_id)->update(['status' => $info->status]);//标记为在线
 				$friend_list = DB::table('friend')->where('user_id',$session->user_id)->get();
 
+				$data = [
+					"type"  => "friendStatus",
+					"uid"   => $session->user_id,
+					"status"=> $info->status=='online'?'online':'offline'
+				];
 				foreach ($friend_list as $k => $v) {
 					if ( $v->id == $session->user_id) {
 						continue;
 					}
-					$data = [
-						"type"  => "friendStatus",
-						"uid"   => $session->user_id,
-						"status"=> $info->status=='online'?'online':'offline'
-					];
 					print_r($data);
 
 					$this->sendByUid($server,$v->friend_id,$data);
