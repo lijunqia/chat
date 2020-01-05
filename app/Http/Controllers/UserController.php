@@ -137,15 +137,5 @@ class UserController extends Controller
         return $this->json(200,'签名修改成功');
     }
 
-	public function changeStatus(Request $request)
-	{
-		$session = session('user');
-		$status = $request->post('status');
-		$res = DB::table('user')->where('id', $session->user_id)->update(['status' => $status]);
-		if (!$res) {
-			return $this->json(500,'操作失败');
-		}
-		return $this->json(200,'操作成功');
-	}
 
 }

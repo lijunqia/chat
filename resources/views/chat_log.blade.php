@@ -26,7 +26,7 @@
   }); %>
 </textarea>
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="/asset/layui/layui.js"></script>
+<script src="/asset/layuiv2/layui.js"></script>
 
 
 <script>

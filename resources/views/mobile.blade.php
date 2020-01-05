@@ -69,6 +69,7 @@
              }]
             // ,msgbox: '/message_box' //消息盒子页面地址，若不开启，剔除该项即可
             // ,find: '/find'//发现页面地址，若不开启，剔除该项即可
+            ,chatLog: '/chat_log' //聊天记录页面地址，若不开启，剔除该项即可
 
             //扩展更多列表
             ,moreList: [{
@@ -85,6 +86,11 @@
                 alias: 'msgbox'
                 ,title: '消息盒子'
                 ,iconUnicode: '&#xe645;' //图标字体的unicode，可不填
+                ,iconClass: '' //图标字体的class类名
+            },{
+                alias: 'bye'
+                ,title: '退出'
+                ,iconUnicode: '&#x1007;' //图标字体的unicode，可不填
                 ,iconClass: '' //图标字体的class类名
             }]
             ,isNewFriend: true //是否开启“新的朋友”
@@ -273,7 +279,7 @@
                         }
                     });
                     break;
-                case 'share':
+                case 'msgbox':
                     layim.panel({
                         title: '邀请好友' //标题
                         ,tpl: '<div style="padding: 10px;">自定义模版，</div>' //模版
@@ -282,12 +288,15 @@
                         }
                     });
                     break;
+                case 'bye':
+                    window.location.href='/loginout'
+                    break;
             }
         });
 
 
         //监听查看更多记录
-        layim.on('chatlog', function(data, ul){
+        layim.on('chatLog', function(data){
             console.log(data);
             layim.panel({
                 title: '与 '+ data.username +' 的聊天记录' //标题

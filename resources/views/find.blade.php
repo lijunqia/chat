@@ -27,17 +27,14 @@
                 </div>
                 <div class="layui-row">
                     @foreach($user_list as $k=>$v)
-                        <div class="layui-col-md4" style="border-bottom: 1px solid #f6f6f6">
-                        <div class="layui-card">
-                            <div class="layui-card-header">{{ $v->nickname }}({{ $v->id }})</div>
-                            <div class="layui-card-body">
-                                <img style="width: 75px;height: 75px;object-fit: cover;" src="{{ $v->avatar }}" alt="">
-                                <button onclick="addFriend({{ $v->id }},'{{ $v->nickname }}','{{ $v->avatar }}')" style="float: right" class="layui-btn layui-btn-normal layui-btn-sm">
-                                    <i class="layui-icon">&#xe654;</i> 添加
-                                </button>
-                            </div>
+                        <div class="layui-col-xs3 layui-find-list">
+                            <li>
+                                <img src="{{ $v->avatar }}" onerror="javascript:this.src='/asset/images/empty.jpg'" >
+                                <span>{{ $v->nickname }}</span>
+                                <p>{{ $v->sign }}  {{#  if($v->sign == ''){ }}我很懒，懒得写签名{{#  } }} </p>
+                                <button class="layui-btn layui-btn-xs btncolor add"  onclick="addFriend({{ $v->id }},'{{ $v->nickname }}','{{ $v->avatar }}')"><i class="layui-icon">&#xe654;</i>加好友</button>
+                            </li>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
@@ -53,16 +50,13 @@
                     </button>
                 </div>
                 @foreach($group_list as $k=>$v)
-                    <div class="layui-col-md4" style="border-bottom: 1px solid #f6f6f6">
-                        <div class="layui-card">
-                            <div class="layui-card-header">{{ $v->groupname }}({{ $v->id }})</div>
-                            <div class="layui-card-body">
-                                <img style="width: 75px;height: 75px;object-fit: cover;" src="{{ $v->avatar }}" alt="">
-                                <button onclick="joinGroup({{ $v->id }})" style="float: right" class="layui-btn layui-btn-normal layui-btn-sm">
-                                    <i class="layui-icon">&#xe654;</i> 加入
-                                </button>
-                            </div>
-                        </div>
+                    <div class="layui-col-xs3 layui-find-list">
+                        <li>
+                            <img src="{{ $v->avatar }}" onerror="javascript:this.src='/asset/images/empty1.jpg'" >
+                            <span>{{ $v->groupname }}</span>
+                            <p>{{ $v->desc }}  {{#  if($v->desc == ''){ }}无{{#  } }} </p>
+                            <button class="layui-btn layui-btn-xs btncolor add"  onclick="joinGroup({{ $v->id }})"><i class="layui-icon">&#xe654;</i>加群</button>
+                        </li>
                     </div>
                 @endforeach
             </div>
@@ -71,7 +65,7 @@
     </div>
 </div>
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="/asset/layui/layui.js"></script>
+<script src="/asset/layuiv2/layui.js"></script>
 
 <script>
     var layer;

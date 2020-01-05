@@ -13,6 +13,7 @@
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
         <div class="layui-logo">聊天室</div>
+    @if(session('user')->user_id == 10001)
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="">控制台</a></li>
@@ -24,6 +25,7 @@
                 </dl>
             </li>
         </ul>
+        @endif
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
@@ -34,10 +36,11 @@
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="">退了</a></li>
+            <li class="layui-nav-item"><a href="/loginout">退了</a></li>
         </ul>
     </div>
 
+    @if(session('user')->user_id == 10001)
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
@@ -59,10 +62,10 @@
             </ul>
         </div>
     </div>
-
+    @endif
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <div style="padding: 15px;">内容主体区域</div>
+        <div style="padding: 15px;"></div>
     </div>
 
     <div class="layui-footer">

@@ -8,9 +8,9 @@
     <link rel="stylesheet" type="text/css" href="/asset/login/css/demo.css" />
     <!--必要样式-->
     <link rel="stylesheet" type="text/css" href="/asset/login/css/component.css" />
-    <link rel="stylesheet" type="text/css" href="/asset/layui/css/layui.css" />
+    <link rel="stylesheet" type="text/css" href="/asset/layuiv2/css/layui.css" />
     <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/asset/layui/layui.js"></script>
+    <script type="text/javascript" src="/asset/layuiv2/layui.js"></script>
     <style>
         @media screen and (max-width: 768px) {
             .layer-anim{

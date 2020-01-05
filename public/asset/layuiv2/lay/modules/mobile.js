@@ -2326,22 +2326,6 @@ layui.define(["laytpl", "upload", "layer-mobile", "zepto"], function(i) {
             })
         }
 
-        //消息盒子
-        ,msgbox: function(){
-            var msgboxElem = layimMain.find('.layim-tool-msgbox');
-            msgboxElem.find('span').removeClass(ANIM_MSG).html('');
-            return events.msgbox.index = layer.open({
-                type: 2
-                ,title: '消息盒子'
-                ,shade: false
-                ,maxmin: true
-                ,area: ['600px', '520px']
-                ,skin: 'layui-box layui-layer-border'
-                ,resize: false
-                ,content: cache.base.msgbox
-            });
-        }
-
     };
     i("layim-mobile", new r)
 }).addcss("modules/layim/mobile/layim.css?v=2.20", "skinlayim-mobilecss");
