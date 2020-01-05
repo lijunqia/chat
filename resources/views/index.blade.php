@@ -285,7 +285,7 @@
             var data = {}
             data.type='changeStatus';
             data.status = status;
-            sendMessage(socket,'{"type":"changeStatus","status":'+status+'}');
+            sendMessage(socket,'{"type":"changeStatus","status":"'+status+'"}');
         });
 
     });
