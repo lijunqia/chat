@@ -156,11 +156,11 @@
             switch (data.type) {
                 case "friend":
                 case "group":
-                    if(data.type === 'friend')
-                        layim.setChatStatus('<span style="color:#FF5722;">对方正在输入。。。</span>');
+//                    if(data.type === 'friend')
+//                        layim.setChatStatus('<span style="color:#FF5722;">对方正在输入。。。</span>');
                     layim.getMessage(data); //res.data即你发送消息传递的数据（阅读：监听发送的消息）
-                    if(data.type === 'friend')
-                        layim.setChatStatus('<span style="color:#FF5722;">在线</span>');
+//                    if(data.type === 'friend')
+//                        layim.setChatStatus('<span style="color:#FF5722;">在线</span>');
                     break;
                 //单纯的弹出
                 case "layer":
