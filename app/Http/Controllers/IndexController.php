@@ -232,11 +232,7 @@ class IndexController extends Controller
 	 */
 	public function mobile(Request $request)
 	{
-		if(!isMobile())
-		{
-			header('location:/');
-			return;
-		}
+
 		$session = session('user');
 		$user = DB::table('user')->find($session->user_id);
 		if (!$user) {
