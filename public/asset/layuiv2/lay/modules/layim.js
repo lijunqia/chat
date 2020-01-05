@@ -82,8 +82,17 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     var status = thatChat.elem.find('.layim-chat-status');
     return status.html(str), this;
   };
-  
-  //接受消息
+
+    LAYIM.prototype.setChatWinStatus = function(uid,str){
+        var thatChat = thisChat();
+        if(!thatChat) return;
+        var win = thatChat.elem.find('.layim-chat-friend .layim-friend'+uid).parent();
+        if(!win || win == 'undefined') return;
+        var status = thatChat.elem.find('.layim-chat-status');
+        return status.html(str), this;
+    };
+
+    //接受消息
   LAYIM.prototype.getMessage = function(data){
     return getMessage(data), this;
   };

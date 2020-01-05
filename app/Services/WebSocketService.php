@@ -139,7 +139,7 @@ class WebSocketService implements WebSocketHandlerInterface
 					if ( $v->id == $session->user_id) {
 						continue;
 					}
-					print_r($data);
+//					print_r($data);
 
 					$this->sendByUid($server,$v->friend_id,$data);
 				}

@@ -180,9 +180,9 @@
                     console.log("friendStatus");
                     layim.setFriendStatus(data.uid, data.status);
                     if(data.status == 'online'){
-                        layim.setChatStatus('<span style="color:#FF5722;">在线</span>'); //模拟标注好友在线状态
+                        layim.setChatWinStatus(data.uid,'<span style="color:#FF5722;">在线</span>'); //模拟标注好友在线状态
                     }else{
-                        layim.setChatStatus('<span style="color:#666;">离线</span>'); //模拟标注好友在线状态
+                        layim.setChatWinStatus(data.uid,'<span style="color:#666;">离线</span>'); //模拟标注好友在线状态
                     }
                     break;
                 //消息盒子
