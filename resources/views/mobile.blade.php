@@ -45,12 +45,12 @@
                 ,friend: userData.friend
                 ,group: userData.group
             }
-            // //获取群员接口（返回的数据格式见下文）
-            // ,members: {
-            //     url: '/group_members' //接口地址（返回的数据格式见下文）
-            //     ,type: 'get' //默认get，一般可不填
-            //     ,data: {} //额外参数
-            // }
+             //获取群员接口（返回的数据格式见下文）
+             ,members: {
+                 url: '/group_members' //接口地址（返回的数据格式见下文）
+                 ,type: 'get' //默认get，一般可不填
+                 ,data: {} //额外参数
+             }
             //上传图片接口（返回的数据格式见下文），若不开启图片上传，剔除该项即可
             ,uploadImage: {
                 url: '/upload?type=im_image&path=im' //接口地址
@@ -61,18 +61,17 @@
                 url: '/upload?type=im_file&path=file' //接口地址
                 ,type: 'post' //默认post
             }
-            // //扩展工具栏，下文会做进一步介绍（如果无需扩展，剔除该项即可）
-            // ,tool: [{
-            //     alias: 'code' //工具别名
-            //     ,title: '代码' //工具名称
-            //     ,icon: '&#xe64e;' //工具图标，参考图标文档
-            // }]
+             //扩展工具栏，下文会做进一步介绍（如果无需扩展，剔除该项即可）
+             ,tool: [{
+                 alias: 'code' //工具别名
+                 ,title: '代码' //工具名称
+                 ,icon: '&#xe64e;' //工具图标，参考图标文档
+             }]
             // ,msgbox: '/message_box' //消息盒子页面地址，若不开启，剔除该项即可
             // ,find: '/find'//发现页面地址，若不开启，剔除该项即可
-            // ,chatLog: '/chat_log' //聊天记录页面地址，若不开启，剔除该项即可
 
             //扩展更多列表
-//            ,moreList: [{
+            ,moreList: [{
 //                alias: 'find'
 //                ,title: '发现'
 //                ,iconUnicode: '&#xe628;' //图标字体的unicode，可不填
@@ -82,22 +81,20 @@
 //                ,title: '分享与邀请'
 //                ,iconUnicode: '&#xe641;' //图标字体的unicode，可不填
 //                ,iconClass: '' //图标字体的class类名
-//            }]
+//            },{
+                alias: 'msgbox'
+                ,title: '消息盒子'
+                ,iconUnicode: '&#xe645;' //图标字体的unicode，可不填
+                ,iconClass: '' //图标字体的class类名
+            }]
             ,isNewFriend: true //是否开启“新的朋友”
-            ,isgroup: true //是否开启“群聊”
+            ,isGroup: false //是否开启“群聊”
 //            ,chatTitleColor: '#c00' //顶部Bar颜色
             ,title: '聊天室' //应用名，默认：我的IM
             ,notice:true
 //            ,voice: 'default.mp3' //声音提醒，默认开启，声音文件为：default.mp3
-            ,isAudio: true //开启聊天工具栏音频
-            ,isVideo: true //开启聊天工具栏视频
-            //扩展工具栏，下文会做进一步介绍（如果无需扩展，剔除该项即可）
-//            ,tool: [{
-//                alias: 'code' //工具别名
-//                ,title: '代码' //工具名称
-//                ,iconUnicode: '&#xe64e;' //工具图标，参考图标文档，可不填
-//                ,iconClass: '' //图标字体的class类名
-//            }]
+            ,isAudio: false //开启聊天工具栏音频
+            ,isVideo: false //开启聊天工具栏视频
         })
         //监听自定义工具栏点击，以添加代码为例
         //建立websocket连接
@@ -138,6 +135,7 @@
                     break;
                 //消息盒子
                 case "msgBox" :
+                    layim.showNew('msgbox', true);
                     //为了等待页面加载，不然找不到消息盒子图标节点
 //                    setTimeout(function(){
 //                        if(data.count > 0){
@@ -241,43 +239,51 @@
 
         //查看聊天信息
         layim.on('detail', function(data){
-            console.log(data); //获取当前会话对象
+//            console.log(data); //获取当前会话对象
             var title=data.name + ' 聊天信息';
             //以查看群组信息（如成员）为例
-            $.get('/chat_log', {id: data.fromid ,type:data.type}, function(res){
-                console.log('res');
-                console.log(res);
-                //弹出面板
-                layim.panel({
-                    title: title //标题
-                    ,tpl: res //模版，基于laytpl语法
-                    ,data: { //数据
-                    }
-                });
-            });
+//            $.get('/chat_log', {id: data.fromid ,type:data.type}, function(res){
+//                //弹出面板
+//                layim.panel({
+//                    title: title //标题
+//                    ,tpl: res //模版，基于laytpl语法
+//                    ,data: { //数据
+//                    }
+//                });
+//            });
         });
 
         //监听点击更多列表
-//        layim.on('moreList', function(obj){
-//            switch(obj.alias){
-//                case 'find':
-//                    layer.msg('自定义发现动作');
-//
-//                    //模拟标记“发现新动态”为已读
-//                    layim.showNew('More', false);
-//                    layim.showNew('find', false);
-//                    break;
-//                case 'share':
-//                    layim.panel({
-//                        title: '邀请好友' //标题
-//                        ,tpl: '<div style="padding: 10px;">自定义模版，</div>' //模版
-//                        ,data: { //数据
-//                            test: '么么哒'
-//                        }
-//                    });
-//                    break;
-//            }
-//        });
+        layim.on('moreList', function(obj){
+            console.log(obj);
+            switch(obj.alias){
+                case 'find':
+                    layer.msg('自定义发现动作');
+
+                    //模拟标记“发现新动态”为已读
+                    layim.showNew('More', false);
+                    layim.showNew('find', false);
+                    break;
+                case 'share':
+                    layim.panel({
+                        title: '邀请好友' //标题
+                        ,tpl: '<div style="padding: 10px;">自定义模版，</div>' //模版
+                        ,data: { //数据
+                            test: '么么哒'
+                        }
+                    });
+                    break;
+                case 'share':
+                    layim.panel({
+                        title: '邀请好友' //标题
+                        ,tpl: '<div style="padding: 10px;">自定义模版，</div>' //模版
+                        ,data: { //数据
+                            test: '么么哒'
+                        }
+                    });
+                    break;
+            }
+        });
 
 
         //监听查看更多记录

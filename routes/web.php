@@ -29,7 +29,6 @@ Route::group(['middleware'=>'login'], function () use($router) {
 
 	$router->get('/mobile',['uses' => 'MobileController@index']);
 	$router->post('/mobile',['uses' => 'MobileController@index']);
-	$router->get('/mobile_log',['uses' => 'MobileController@chatLog']);
 
 });
 $router->get('/login',['uses' => 'IndexController@login']);

@@ -1600,7 +1600,7 @@ layui.define(["laytpl", "upload", "layer-mobile", "zepto"], function(i) {
             i = i || {},
                 i = a.extend({
                     title: "我的IM",
-                    isgroup: 0,
+                    isGroup: 0,
                     isNewFriend: !0,
                     voice: "default.mp3",
                     chatTitleColor: "#36373C"
@@ -1677,7 +1677,7 @@ layui.define(["laytpl", "upload", "layer-mobile", "zepto"], function(i) {
     }
         , f = ['<div class="layui-layim">', '<div class="layim-tab-content layui-show">', '<ul class="layim-list-friend">', '<ul class="layui-layim-list layui-show layim-list-history">', y({
         type: "history"
-    }), "</ul>", "</ul>", "</div>", '<div class="layim-tab-content">', '<ul class="layim-list-top">', "{{# if(d.base.isNewFriend){ }}", '<li layim-event="newFriend"><i class="layui-icon">&#xe654;</i>新的朋友<i class="layim-new" id="LAY_layimNewFriend"></i></li>', "{{# } if(d.base.isgroup){ }}", '<li layim-event="group"><i class="layui-icon">&#xe613;</i>群聊<i class="layim-new" id="LAY_layimNewGroup"></i></li>', "{{# } }}", "</ul>", '<ul class="layim-list-friend">', '{{# layui.each(d.friend, function(index, item){ var spread = d.local["spread"+index]; }}', "<li>", '<h5 layim-event="spread" lay-type="{{ spread }}"><i class="layui-icon">{{# if(spread === "true"){ }}&#xe61a;{{# } else {  }}&#xe602;{{# } }}</i><span>{{ item.groupname||"未命名分组"+index }}</span><em>(<cite class="layim-count"> {{ (item.list||[]).length }}</cite>)</em></h5>', '<ul class="layui-layim-list {{# if(spread === "true"){ }}', " layui-show", '{{# } }}">', y({
+    }), "</ul>", "</ul>", "</div>", '<div class="layim-tab-content">', '<ul class="layim-list-top">', "{{# if(d.base.isNewFriend){ }}", '<li layim-event="newFriend"><i class="layui-icon">&#xe654;</i>新的朋友<i class="layim-new" id="LAY_layimNewFriend"></i></li>', "{{# } if(d.base.isGroup){ }}", '<li layim-event="group"><i class="layui-icon">&#xe613;</i>群聊<i class="layim-new" id="LAY_layimNewGroup"></i></li>', "{{# } }}", "</ul>", '<ul class="layim-list-friend">', '{{# layui.each(d.friend, function(index, item){ var spread = d.local["spread"+index]; }}', "<li>", '<h5 layim-event="spread" lay-type="{{ spread }}"><i class="layui-icon">{{# if(spread === "true"){ }}&#xe61a;{{# } else {  }}&#xe602;{{# } }}</i><span>{{ item.groupname||"未命名分组"+index }}</span><em>(<cite class="layim-count"> {{ (item.list||[]).length }}</cite>)</em></h5>', '<ul class="layui-layim-list {{# if(spread === "true"){ }}', " layui-show", '{{# } }}">', y({
         type: "friend",
         item: "item.list",
         index: "index"
@@ -2266,8 +2266,9 @@ layui.define(["laytpl", "upload", "layer-mobile", "zepto"], function(i) {
             layui.each(d.detail, function(e, a) {
                 a && a(i.data)
             })
-        },
-        playAudio: function(i) {
+        }
+
+        ,playAudio: function(i) {
             var e = i.data("audio")
                 , a = e || document.createElement("audio")
                 , t = function() {
@@ -2324,6 +2325,23 @@ layui.define(["laytpl", "upload", "layer-mobile", "zepto"], function(i) {
                 btn: "我知道了"
             })
         }
+
+        //消息盒子
+        ,msgbox: function(){
+            var msgboxElem = layimMain.find('.layim-tool-msgbox');
+            msgboxElem.find('span').removeClass(ANIM_MSG).html('');
+            return events.msgbox.index = layer.open({
+                type: 2
+                ,title: '消息盒子'
+                ,shade: false
+                ,maxmin: true
+                ,area: ['600px', '520px']
+                ,skin: 'layui-box layui-layer-border'
+                ,resize: false
+                ,content: cache.base.msgbox
+            });
+        }
+
     };
     i("layim-mobile", new r)
 }).addcss("modules/layim/mobile/layim.css?v=2.20", "skinlayim-mobilecss");
