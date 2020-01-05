@@ -1696,12 +1696,6 @@ layui.define(["laytpl", "upload", "layer-mobile", "zepto"], function(i) {
         , "{{# if(d.base && d.base.uploadFile){ }}"
         , '<span class="layui-icon layim-tool-image" title="发送文件" layim-event="image" data-type="file">&#xe61d;<input type="file" name="file"></span>'
         , "{{# }; }}"
-        ,'{{# if(d.base && d.base.isAudio){ }}'
-        ,'<span class="layui-icon layim-tool-audio" title="发送网络音频" layim-event="media" data-type="audio">&#xe6fc;</span>'
-        ,'{{# }; }}'
-        ,'{{# if(d.base && d.base.isVideo){ }}'
-        ,'<span class="layui-icon layim-tool-video" title="发送网络视频" layim-event="media" data-type="video">&#xe6ed;</span>'
-        ,'{{# }; }}'
         , "{{# layui.each(d.base.tool, function(index, item){ }}"
         , '<span class="layui-icon  {{item.iconClass||""}} layim-tool-{{item.alias}}" title="{{item.title}}" layim-event="extend" lay-filter="{{ item.alias }}">{{item.iconUnicode||""}}</span>'
         , "{{# }); }}"
