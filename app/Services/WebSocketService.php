@@ -137,7 +137,8 @@ class WebSocketService implements WebSocketHandlerInterface
 						"uid"   => $v->id,
 						"status"=> $info->status=='online'?'online':'offline'
 					];
-					
+					print_r($data);
+
 					$this->sendByUid($server,$v->id,$data);
 				}
 				break;
