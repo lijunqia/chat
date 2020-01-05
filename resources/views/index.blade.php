@@ -221,7 +221,7 @@
 //            if (res.type == 'msgBox') {
 //                layim.msgbox(res.data.count); //消息盒子有新消息
 //            }
-            im.contextMenu();
+            layim.contextMenu();
         });
 
         //监听发送消息
