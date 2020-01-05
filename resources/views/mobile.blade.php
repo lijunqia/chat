@@ -244,7 +244,7 @@
             console.log(data); //获取当前会话对象
             var title=data.name + ' 聊天信息';
             //以查看群组信息（如成员）为例
-            $.get('/chat_log', {id: data.id ,type:friend}, function(res){
+            $.get('/chat_log', {id: data.fromid ,type:data.type}, function(res){
                 console.log('res');
                 console.log(res);
                 //弹出面板
