@@ -136,7 +136,7 @@ class WebSocketService implements WebSocketHandlerInterface
 					}
 					$data = [
 						"type"  => "friendStatus",
-						"uid"   => $v->friend_id,
+						"uid"   => $session->user_id,
 						"status"=> $info->status=='online'?'online':'offline'
 					];
 					print_r($data);
