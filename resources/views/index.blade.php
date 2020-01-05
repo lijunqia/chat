@@ -285,10 +285,7 @@
             var data = {}
             data.type='changeStatus';
             data.status = status;
-            sendMessage(socket,JSON.stringify({
-                type: 'changeStatus' //随便定义，用于在服务端区分消息类型
-                ,data: data
-            }));
+            sendMessage(socket,JSON.stringify(data));
         });
 
     });
