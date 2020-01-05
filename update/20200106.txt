@@ -1,0 +1,6 @@
+ALTER TABLE `c_friend_group`
+ADD COLUMN `is_default`  tinyint NULL DEFAULT 0 COMMENT '1Ä¬ÈÏ' AFTER `groupname`;
+
+ALTER TABLE `c_friend`
+ADD COLUMN `friend_nickname`  varchar(255) NULL COMMENT 'ºÃÓÑ±¸×¢' AFTER `friend_group_id`;
+

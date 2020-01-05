@@ -137,5 +137,17 @@ class UserController extends Controller
         return $this->json(200,'签名修改成功');
     }
 
+	public function updateNickname(Request $request)
+	{
+		$session = session('user');
+		$friendid = $request->post('friendid');
+		$nickname = $request->post('nickname');
+		$res = DB::table('friend')->where('id', $session->user_id)->where('friend_id', $friendid)->update(['friend_nickname' => $nickname]);
+		if (!$res) {
+			return $this->json(500,'修改失败');
+		}
+		return $this->json(200,'修改成功');
+	}
+
 
 }

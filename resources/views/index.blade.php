@@ -90,12 +90,12 @@
         socket.send(data)
     }
 
-    layui.use(['element', 'layim','contextMenu'], function(){
+    layui.use(['element', 'layim', 'socket'], function(){
         var $ = layui.$
             ,layim = layui.layim
             ,element = layui.element
             ,router = layui.router();
-        var contextMenu = layui.contextMenu;
+        var socket = layui.socket;
 
 
         //基础配置
@@ -221,7 +221,7 @@
 //            if (res.type == 'msgBox') {
 //                layim.msgbox(res.data.count); //消息盒子有新消息
 //            }
-            layim.contextMenu();
+            im.contextMenu();
         });
 
         //监听发送消息

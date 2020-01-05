@@ -67,7 +67,8 @@ class IndexController extends Controller
             //为用户创建默认分组
             $friend_group_id = DB::table('friend_group')->insertGetId([
                 'user_id' => $user_id,
-                'groupname' => '默认分组'
+                'groupname' => '默认分组',
+				'is_default' => 1,
             ]);
 //            //将用户添加到所有人都在群
 //            DB::table('group_member')->insert([

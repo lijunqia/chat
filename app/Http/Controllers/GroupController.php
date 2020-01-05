@@ -122,4 +122,44 @@ class GroupController extends Controller
         }
     }
 
+	/**
+	 * @author woann<304550409@qq.com>
+	 * @param Request $request
+	 * @return GroupController
+	 * @des 删除群
+	 */
+	public function deleteGroup(Request $request)
+	{
+		$session = session('user');
+		$id = $request->post('groupid');
+		$group = DB::table('group')->where('user_id', $session->user_id)->find($id);
+		if (!$group) {
+			return $this->json(500,"您不是管理员");
+		}
+		DB::table('group_member')->where('group_id', $id)->where('user_id' ,$session->user_id)->delete();
+		DB::table('group')->where('user_id', $session->user_id)->delete($id);
+
+		return $this->json(200,"删除成功");
+	}
+
+	/**
+	 * @author woann<304550409@qq.com>
+	 * @param Request $request
+	 * @return GroupController
+	 * @des 退出群
+	 */
+	public function leaveGroup(Request $request)
+	{
+		$session = session('user');
+		$id = $request->post('groupid');
+		$userid = $request->post('userid');
+		$group = DB::table('group')->where('user_id', $session->user_id)->find($id);
+		if (!$group || $userid==$session->user_id) {
+			return $this->json(500,"您不是管理员");
+		}
+		DB::table('group_member')->where('group_id',$id)->where('user_id', $userid)->delete();
+
+		return $this->json(200,"删除成功");
+	}
+
 }
