@@ -121,7 +121,6 @@ class WebSocketService implements WebSocketHandlerInterface
         if (!isset($info->type)) {
             return;
         }
-        print_r($info);
         //根据type字段判断消息类型并执行对应操作
         switch ($info->type) {
 			//在线状态的切换事件
@@ -138,7 +137,7 @@ class WebSocketService implements WebSocketHandlerInterface
 					if ( $v->id == $session->user_id) {
 						continue;
 					}
-					$this->sendByUid($server,$v->id,$data,true);
+					$this->sendByUid($server,$v->id,$data);
 				}
 				break;
             //心跳包
