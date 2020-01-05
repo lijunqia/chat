@@ -242,27 +242,15 @@
         //查看聊天信息
         layim.on('detail', function(data){
             console.log(data); //获取当前会话对象
+            var title=data.name + ' 聊天信息';
             //以查看群组信息（如成员）为例
             $.get('/chat_log', {id: data.id ,type:friend}, function(res){
                 console.log('res');
                 console.log(res);
                 //弹出面板
                 layim.panel({
-                    title: data.name + ' 聊天信息' //标题
-                    ,tpl: '<script id="demo" type="text/html">\n' +
-                    '  <ul>\n' +
-                    '  {{#  layui.each(d.list, function(index, item){ }}\n' +
-                    '    <li>\n' +
-                    '      <span><img src="{{ item.avatar }}"></span>\n' +
-                    '      <span>{{ item.username }}：</span>\n' +
-                    '      <span>{{ item.content }}</span>\n' +
-                    '    </li>\n' +
-                    '  {{#  }); }}\n' +
-                    '  {{#  if(d.list.length === 0){ }}\n' +
-                    '    无数据\n' +
-                    '  {{#  } }} \n' +
-                    '  <\/ul>\n' +
-                    ' <\/script>' //模版，基于laytpl语法
+                    title: title //标题
+                    ,tpl: '<div style="padding: 10px;">自定义模版，{{d.data.path}}</div>' //模版，基于laytpl语法
                     ,data: { //数据
                         rows: res.data //假设rows为群组成员
                     }
