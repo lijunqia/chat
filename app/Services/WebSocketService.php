@@ -124,13 +124,14 @@ class WebSocketService implements WebSocketHandlerInterface
         //根据type字段判断消息类型并执行对应操作
         switch ($info->type) {
 			//在线状态的切换事件
-			case "onlineHide":
+			case "changeStatus":
+				DB::table('user')->where('id', $session->user_id)->update(['status' => $info]);//标记为在线
 				$data = [
 					"type"  => "friendStatus",
-					"uid"   => $info->data->mine->id,
-					"status"=> $info->data=='hide'?'offline':'online'
+					"uid"   => $session->user_id,
+					"status"=> $info->status=='online'?'online':'offline'
 				];
-				$friend_list = DB::table('friend')->where('user_id',$info->data->mine->id)->get();
+				$friend_list = DB::table('friend')->where('user_id',$session->user_id)->get();
 
 				foreach ($friend_list as $k => $v) {
 					if ( $v->id == $session->user_id) {

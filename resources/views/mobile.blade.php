@@ -88,7 +88,7 @@
                 ,iconClass: '' //图标字体的class类名
             }]
             ,isNewFriend: true //是否开启“新的朋友”
-            ,isGroup: false //是否开启“群聊”
+            ,isGroup: true //是否开启“群聊”
 //            ,chatTitleColor: '#c00' //顶部Bar颜色
             ,title: '聊天室' //应用名，默认：我的IM
             ,notice:true

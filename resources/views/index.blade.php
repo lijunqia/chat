@@ -265,10 +265,30 @@
         });
         //监听在线状态的切换事件
         layim.on('online', function(status){
-//            sendMessage(socket,JSON.stringify({
-//                type: 'onlineHide' //随便定义，用于在服务端区分消息类型
-//                ,data: status
-//            }));
+            console.log(status);
+//            $.ajax({
+//                url:"/change_status",
+//                type:"post",
+//                data:{sign:value},
+//                dataType:"json",
+//                success:function (res) {
+//                    if(res.code == 200){
+//                        layer.msg(res.msg)
+//                    }else{
+//                        layer.msg(res.msg,function () {})
+//                    }
+//                },
+//                error:function () {
+//                    layer.msg("网络繁忙",function(){});
+//                }
+//            })
+            var data = {}
+            data.type='changeStatus';
+            data.status = status;
+            sendMessage(socket,JSON.stringify({
+                type: 'changeStatus' //随便定义，用于在服务端区分消息类型
+                ,data: data
+            }));
         });
 
     });
