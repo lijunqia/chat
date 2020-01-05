@@ -178,7 +178,6 @@
                 //好友上下线变更
                 case "friendStatus" :
                     console.log("friendStatus");
-                    console.log(data);
                     layim.setFriendStatus(data.uid, data.status);
                     break;
                 //消息盒子

@@ -134,12 +134,12 @@ class WebSocketService implements WebSocketHandlerInterface
 					}
 					$data = [
 						"type"  => "friendStatus",
-						"uid"   => $v->id,
+						"uid"   => $v->friend_id,
 						"status"=> $info->status=='online'?'online':'offline'
 					];
 					print_r($data);
 
-					$this->sendByUid($server,$v->id,$data);
+					$this->sendByUid($server,$v->friend_id,$data);
 				}
 				break;
             //心跳包
